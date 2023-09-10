@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D.H
-# define CUB3D.H
+#ifndef CUB3D_H
+# define CUB3D_H
 // set the sizes of map and screen
-# define maW
-# define maH
-# define scW
-# define scH
+# define MAW
+# define MAH
+# define SCW
+# define SCH
 // define structs
 
 // list of functions
