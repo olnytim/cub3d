@@ -13,7 +13,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 FSANITIZE = -fsanitize=address
 #
-SRC = $(addprefix $(PREF_SRC)/, main.c check_args.c check.c exit.c)
+SRC = $(addprefix $(PREF_SRC)/, main.c check_args.c check_map.c check.c exit.c)
 OBJ = $(patsubst $(PREF_SRC)/%.c, $(PREF_OBJ)/%.o, $(SRC))
 #
 all: $(NAME)
@@ -21,7 +21,7 @@ all: $(NAME)
 #
 $(NAME): $(OBJ) $(LIBFTA)
 	@$(CC) $(CFLAGS) $(SRC) $(LIBFTA) -o $@
-	@echo "Executable file $(NAME) created successfully"
+	@echo "Executable file $(NAME) created successfully!"
 #
 $(PREF_OBJ)/%.o: $(PREF_SRC)/%.c Makefile
 	@mkdir -p $(PREF_OBJ)

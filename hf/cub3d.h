@@ -15,7 +15,7 @@
 
 // libs
 # include "../libft/libft.h"
-# include "mlx.h"
+# include <mlx.h>
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -28,9 +28,16 @@
 // define structs
 typedef struct s_mapinfo
 {
-	int	height;
-	int	width;
-	int	*lines;
+	int		**lines;
+	int		fd;
+	int		height;
+	int		width;
+	char	**map;
+	char	*line;
+	char	*n_path;
+	char	*s_path;
+	char	*e_path;
+	char	*w_path;
 }	t_mapinfo;
 
 typedef struct s_player
