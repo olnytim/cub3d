@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/10 20:12:27 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/10 20:12:30 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/17 17:14:12 by tgalyaut          #+#    #+#             */
+/*   Updated: 2023/06/02 19:02:51 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hf/cub3d.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_isalnum(char c)
 {
-	ft_parse(ac, av);
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
 	return (0);
 }

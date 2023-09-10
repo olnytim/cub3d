@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/10 20:12:27 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/10 20:12:30 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/05/09 19:45:04 by tgalyaut          #+#    #+#             */
+/*   Updated: 2023/05/30 21:44:43 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hf/cub3d.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_strcmp(char *str1, char *str2)
 {
-	ft_parse(ac, av);
-	return (0);
+	while (*str1 && *str2 && str1 == str2)
+	{
+		++str1;
+		++str2;
+	}
+	return (*str1 - *str2);
 }

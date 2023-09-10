@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 #
 PREF_SRC = src
 PREF_OBJ = obj
@@ -10,7 +10,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 FSANITIZE = -fsanitize=address
 #
-SRC = $(addprefix $(PREF_SRC)/,|)
+SRC = $(addprefix $(PREF_SRC)/, main.c check_args.c check_map.c)
 OBJ = $(patsubst $(PREF_SRC)/%.c, $(PREF_OBJ)/%.o, $(SRC))
 #
 all: $(NAME)
