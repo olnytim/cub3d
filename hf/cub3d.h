@@ -45,10 +45,16 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	s_player	*player;
-	s_mapinfo	*mapinfo;
+	t_player	*player;
+	t_mapinfo	*mapinfo;
 }	t_game;
 
 // list of functions
+/* exit functions */
+void	ft_exit(char *str);
+
+/* parse functions */
+void	ft_parse(int ac, char **av);
+void	ft_sizes(int ac, char **av);
 
 #endif

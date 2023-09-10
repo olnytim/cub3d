@@ -16,4 +16,5 @@
 
 void	ft_parse(int ac, char **av)
 {
+	ft_sizes(ac, av);
 }

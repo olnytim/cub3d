@@ -396,4 +396,30 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-.idea
+
+# Ignore CLion project files
+.idea/
+
+# Ignore CMake build directories
+cmake-build-debug/
+cmake-build-release/
+
+# Ignore CLion's CMakeLists.txt user-specific files
+CMakeLists.txt.user
+
+# Ignore CLion-generated executables and object files
+*.exe
+*.out
+*.o
+
+# Ignore CLion-generated Makefiles
+CMakeFiles/
+CMakeCache.txt
+
+# Ignore CLion's cmake-build-<project_name> directory
+cmake-build-*/
+
+# Ignore any backup or swap files created by the editor
+*~
+*.swp
+*.dSYM
