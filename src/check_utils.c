@@ -14,7 +14,7 @@
 
 int	ft_skip_spaces(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i] == ' ')
@@ -32,4 +32,15 @@ void	ft_empty(char *line)
 {
 	if (!*line)
 		ft_exit("File is empty");
+}
+
+int	ft_check_path_color(char *line)
+{
+	while (*line)
+	{
+		if (*line != ' ')
+			return (0);
+		++line;
+	}
+	return (1);
 }

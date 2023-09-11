@@ -38,21 +38,16 @@ void	ft_check_end(t_game *game)
 void	ft_path_parse(t_game *game)
 {
 	char	*line;
-	char	*temp;
-	int		i;
 
 	line = ft_strdup("NSWECF");
-	while (game->mapinfo->height > 0)
+	game->mapinfo->line = get_next_line(game->mapinfo->fd);
+	if (!game->mapinfo->line)
+		ft_exit("File is empty\n");
+	while (!ft_check_path_color(line))
 	{
-		free(temp);
-		temp = get_next_line(game->mapinfo->fd);
-		ft_empty(temp);
-		i = 0;
-		while (temp[i] != '\n' && temp)
-		{
-			i = ft_skip_spaces(temp);
-//			if (temp[i] == 'N')
-
-		}
+		free(game->mapinfo->line);
+		game->mapinfo->line = get_next_line(game->mapinfo->fd);
+		if (!game->mapinfo->line)
+			ft_exit("File is empty\n");
 	}
 }
