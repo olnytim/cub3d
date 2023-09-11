@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgalyaut <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/10 20:12:27 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/10 20:12:30 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/09/11 16:22:58 by tgalyaut          #+#    #+#             */
+/*   Updated: 2023/09/11 16:22:59 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hf/cub3d.h"
 
-int	main(int ac, char **av)
+int	ft_skip_spaces(char *line)
 {
-	t_game	*game;
+	int i;
 
-	game = malloc(sizeof(t_game));
-	ft_parse(game, ac, av);
-	return (0);
+	i = 0;
+	while (line[i] == ' ')
+		++i;
+	return (i);
+}
+
+void	check_position(char pos, char player)
+{
+	if (pos != '1' && pos != '0' && pos != player)
+		ft_exit("Wrong fill of map");
+}
+
+void	ft_empty(char *line)
+{
+	if (!*line)
+		ft_exit("File is empty");
 }

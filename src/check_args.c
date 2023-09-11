@@ -12,10 +12,11 @@
 
 #include "../hf/cub3d.h"
 
-void	ft_sizes(int ac, char **av)
+void	ft_sizes(t_game *game, int ac, char **av)
 {
-	int fd;
-	char *name;
+	int			fd;
+	char		*name;
+	t_mapinfo	*mapinfo;
 
 	if (ac == 2)
 	{
@@ -25,6 +26,11 @@ void	ft_sizes(int ac, char **av)
 		name = ft_strrchr(av[1], '.');
 		if (!name || ft_strncmp(name, ".cub", 5) != 0)
 			ft_exit("Try to use file with '.cub' ending\n");
+		mapinfo = malloc(sizeof(t_mapinfo));
+		if (!mapinfo)
+			ft_exit("Malloc error\n");
+		game->mapinfo = mapinfo;
+		game->mapinfo->fd = fd;
 		close(fd);
 	}
 	else

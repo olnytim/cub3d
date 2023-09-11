@@ -14,7 +14,13 @@
 
 #include "../hf/cub3d.h"
 
-void	ft_parse(int ac, char **av)
+static void	ft_print_info(t_game *game)
 {
-	ft_sizes(ac, av);
+	ft_printf("fd is: %d\n", game->mapinfo->fd);
+}
+
+void	ft_parse(t_game *game, int ac, char **av)
+{
+	ft_sizes(game, ac, av);
+	ft_print_info(game);
 }

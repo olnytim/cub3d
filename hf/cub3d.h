@@ -61,7 +61,11 @@ typedef struct s_game
 void	ft_exit(char *str);
 
 /* parse functions */
-void	ft_parse(int ac, char **av);
-void	ft_sizes(int ac, char **av);
+void	ft_parse(t_game *game, int ac, char **av);
+void	ft_sizes(t_game *game, int ac, char **av);
+void	check_position(char pos, char player);
+void	ft_check_end(t_game *game);
+void	ft_empty(char *line);
+int		ft_skip_spaces(char *line);
 
 #endif
