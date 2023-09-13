@@ -46,17 +46,17 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	if (!*map || *map == '\n')
 		ft_exit("Input invalid path for orientation\n");
 	if (rem == 'N')
-		game->mapinfo->n_path = ft_strdup(line);
+		game->mapinfo->n_path = ft_strdup(map);
 	else if (rem == 'S')
-		game->mapinfo->s_path = ft_strdup(line);
+		game->mapinfo->s_path = ft_strdup(map);
 	else if (rem == 'E')
-		game->mapinfo->e_path = ft_strdup(line);
+		game->mapinfo->e_path = ft_strdup(map);
 	else if (rem == 'W')
-		game->mapinfo->w_path = ft_strdup(line);
+		game->mapinfo->w_path = ft_strdup(map);
 	else if (rem == 'C')
-		game->mapinfo->c_color = ft_strdup(line);
+		game->mapinfo->c_color = ft_strdup(map);
 	else if (rem == 'F')
-		game->mapinfo->f_color = ft_strdup(line);
+		game->mapinfo->f_color = ft_strdup(map);
 	// ft_print_info(game);
 	return (1);
 }
@@ -66,17 +66,17 @@ static int	ft_check_lines(t_game *game, char *map, char* line)
 	if (*map == '\n')
 		return (1);
 	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
-		return (ft_init_dirs(game, map, line + 2, 'N'));
+		return (ft_init_dirs(game, map + 2, line, 'N'));
 	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
-		return (ft_init_dirs(game, map, line + 2, 'S'));
+		return (ft_init_dirs(game, map + 2, line, 'S'));
 	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
-		return (ft_init_dirs(game, map, line + 2, 'E'));
+		return (ft_init_dirs(game, map + 2, line, 'E'));
 	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
-		return (ft_init_dirs(game, map, line + 2, 'W'));
+		return (ft_init_dirs(game, map + 2, line, 'W'));
 	else if (line[0] == 'C' && line[1] == ' ')
-		return (ft_init_dirs(game, map, line + 1, 'C'));
+		return (ft_init_dirs(game, map + 1, line, 'C'));
 	else if (line[0] == 'F' && line[1] == ' ')
-		return (ft_init_dirs(game, map, line + 1, 'F'));
+		return (ft_init_dirs(game, map + 1, line, 'F'));
 	else
 		ft_exit("Use correct orientation\n");
 	return (0);
