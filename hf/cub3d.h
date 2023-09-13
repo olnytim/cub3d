@@ -14,8 +14,9 @@
 # define CUB3D_H
 
 // libs
+// # include <mlx.h>
+# include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
-# include <mlx.h>
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -61,11 +62,11 @@ typedef struct s_game
 void	ft_exit(char *str);
 
 /* parse functions */
+void	ft_empty(char *line);
+void	ft_check_end(t_game *game);
+void	check_position(char pos, char play1er);
 void	ft_parse(t_game *game, int ac, char **av);
 void	ft_sizes(t_game *game, int ac, char **av);
-void	check_position(char pos, char player);
-void	ft_check_end(t_game *game);
-void	ft_empty(char *line);
 int		ft_check_path_color(char *line);
 int		ft_skip_spaces(char *line);
 
