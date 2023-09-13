@@ -39,6 +39,8 @@ typedef struct s_mapinfo
 	char	*s_path;
 	char	*e_path;
 	char	*w_path;
+	char	*c_color;
+	char	*f_color;
 }	t_mapinfo;
 
 typedef struct s_player
@@ -64,10 +66,12 @@ void	ft_exit(char *str);
 /* parse functions */
 void	ft_empty(char *line);
 void	ft_check_end(t_game *game);
+void	ft_path_parse(t_game *game);
 void	check_position(char pos, char play1er);
 void	ft_parse(t_game *game, int ac, char **av);
 void	ft_sizes(t_game *game, int ac, char **av);
 int		ft_check_path_color(char *line);
 int		ft_skip_spaces(char *line);
+void	ft_print_info(t_game *game);
 
 #endif

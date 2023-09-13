@@ -31,7 +31,7 @@ void	ft_sizes(t_game *game, int ac, char **av)
 			ft_exit("Malloc error\n");
 		game->mapinfo = mapinfo;
 		game->mapinfo->fd = fd;
-		close(fd);
+		// close(fd);
 	}
 	else
 		ft_exit("Wrong number of args\n");

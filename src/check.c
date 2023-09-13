@@ -14,11 +14,15 @@
 
 #include "../hf/cub3d.h"
 
-static void	ft_print_info(t_game *game)
+void	ft_print_info(t_game *game)
 {
 	// int	i;
 
 	ft_printf("fd is: %d\n", game->mapinfo->fd);
+	ft_printf("no is: %s", game->mapinfo->n_path);
+	ft_printf("so is: %s", game->mapinfo->s_path);
+	ft_printf("eo is: %s", game->mapinfo->e_path);
+	ft_printf("wo is: %s", game->mapinfo->w_path);
 	// i = -1;
 	// while (game->mapinfo->map[++i])
 	// 	ft_printf("%d line of map is: %s", i, game->mapinfo->map[i]);
@@ -28,5 +32,6 @@ static void	ft_print_info(t_game *game)
 void	ft_parse(t_game *game, int ac, char **av)
 {
 	ft_sizes(game, ac, av);
+	ft_path_parse(game);
 	ft_print_info(game);
 }
