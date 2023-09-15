@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_values.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 22:31:41 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/15 22:31:46 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:38:59 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	if (!*line)
 		ft_exit("Error\n");
 	*line = ' ';
-	ft_skip_spaces(map);
+	map = ft_skip_spaces(map);
 	if (!*map || *map == '\n')
 		ft_exit("Input invalid path for orientation\n");
 	if (rem == 'N')

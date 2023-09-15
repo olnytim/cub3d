@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:12:04 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/15 22:17:55 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:38:53 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,13 @@ void	ft_exit(char *str);
 /* parse functions */
 void	ft_empty(char *line);
 void	ft_check_end(t_game *game);
+char	*ft_skip_spaces(char *line);
 void	ft_path_parse(t_game *game);
+void	ft_print_info(t_game *game);
 void	check_position(char pos, char play1er);
 void	ft_parse(t_game *game, int ac, char **av);
 void	ft_sizes(t_game *game, int ac, char **av);
+
 int		ft_check_path_color(char *line);
-int		ft_skip_spaces(char *line);
-void	ft_print_info(t_game *game);
 
 #endif

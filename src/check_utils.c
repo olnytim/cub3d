@@ -3,23 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:22:58 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/11 16:22:59 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:39:14 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hf/cub3d.h"
 
-int	ft_skip_spaces(char *line)
+char	*ft_skip_spaces(char *line)
 {
-	int	i;
-
-	i = 0;
-	while (line[i] == ' ')
-		++i;
-	return (i);
+	while (*line == ' ')
+		++line;
+	return (line);
 }
 
 void	check_position(char pos, char player)
