@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 02:10:58 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/15 22:17:08 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:27:34 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,10 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 		game->mapinfo->c_color = ft_strdup(map);
 	else if (rem == 'F')
 		game->mapinfo->f_color = ft_strdup(map);
-	// ft_print_info(game);
 	return (1);
 }
 
-static int	ft_check_lines(t_game *game, char *map, char* line)
+static int	ft_check_lines(t_game *game, char *map, char *line)
 {
 	if (*map == '\n')
 		return (1);
@@ -88,15 +87,13 @@ void	ft_path_parse(t_game *game)
 
 	line = ft_strdup("NSEWCF");
 	game->mapinfo->line = get_next_line(game->mapinfo->fd);
-	ft_printf("fd is: %d\n", game->mapinfo->fd);
-	ft_printf("line is: '%s'", game->mapinfo->line);
 	if (!game->mapinfo->line)
 		ft_exit("File is empty\n");
-	while (!ft_check_path_color(line) && ft_check_lines(game, game->mapinfo->line, line))
+	while (!ft_check_path_color(line)
+		&& ft_check_lines(game, game->mapinfo->line, line))
 	{
 		free(game->mapinfo->line);
 		game->mapinfo->line = get_next_line(game->mapinfo->fd);
-		ft_printf("line is: '%s'\n", game->mapinfo->line);
 		if (!game->mapinfo->line)
 			ft_exit("File is empty\n");
 	}
