@@ -20,31 +20,51 @@ MINILIBX = -L./minilibx-linux -lmlx -lm -lXext -lX11
 SRC = $(addprefix $(PREF_SRC)/, main.c check_utils.c check_args.c check_map.c check.c exit.c)
 OBJ = $(patsubst $(PREF_SRC)/%.c, $(PREF_OBJ)/%.o, $(SRC))
 #
+# Linux implementation
+#-------------------------------
+# all: add $(NAME)
+# 	@echo > /dev/null
+# #
+# $(NAME): $(OBJ) $(LIBFTA)
+# 	@$(CC) $(CFLAGS) $(SRC) $(LIBFTA) $(MINILIBXA) -o $@
+# 	@echo "Executable file $(NAME) created successfully!"
+# #
+# $(PREF_OBJ)/%.o: $(PREF_SRC)/%.c Makefile
+# 	@mkdir -p $(PREF_OBJ)
+# 	@$(CC) $(CFLAGS) $(HEADER) $(MLX_HEADER) -c $< -o $@
+# #
+# add:
+# 	@make -C $(LIBFT_PATH)
+# 	@make -C $(MINILIBX_PATH)
+#--------------------------------
+# Mac implementation
+#--------------------------------
 all: add $(NAME)
 	@echo > /dev/null
 #
 $(NAME): $(OBJ) $(LIBFTA)
-	@$(CC) $(CFLAGS) $(SRC) $(LIBFTA) $(MINILIBXA) -o $@
+	@$(CC) $(CFLAGS) $(SRC) $(LIBFTA) -o $@
 	@echo "Executable file $(NAME) created successfully!"
 #
 $(PREF_OBJ)/%.o: $(PREF_SRC)/%.c Makefile
 	@mkdir -p $(PREF_OBJ)
-	@$(CC) $(CFLAGS) $(HEADER) $(MLX_HEADER) -c $< -o $@
+	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+#---------------------------------
 #
 add:
 	@make -C $(LIBFT_PATH)
-	@make -C $(MINILIBX_PATH)
+	# @make -C $(MINILIBX_PATH)
 #
 clean:
 	@rm -rf $(PREF_OBJ)
 	@$(MAKE) -C $(LIBFT_PATH) clean
-	@$(MAKE) -C $(MINILIBX_PATH) clean
+	# @$(MAKE) -C $(MINILIBX_PATH) clean
 	@rm -rf *.dSYM
 #
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(LIBFTA)
-	@rm -f $(MINILIBXA)
+	# @rm -f $(MINILIBXA)
 #
 re: fclean all
 #

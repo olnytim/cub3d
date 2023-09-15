@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 02:10:58 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/11 02:11:00 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:17:08 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,17 @@ static int	ft_check_lines(t_game *game, char *map, char* line)
 {
 	if (*map == '\n')
 		return (1);
-	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
+	if (map[0] == 'N' && map[1] == 'O' && map[2] == ' ')
 		return (ft_init_dirs(game, map + 2, line, 'N'));
-	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
+	else if (map[0] == 'S' && map[1] == 'O' && map[2] == ' ')
 		return (ft_init_dirs(game, map + 2, line, 'S'));
-	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
+	else if (map[0] == 'E' && map[1] == 'A' && map[2] == ' ')
 		return (ft_init_dirs(game, map + 2, line, 'E'));
-	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
+	else if (map[0] == 'W' && map[1] == 'E' && map[2] == ' ')
 		return (ft_init_dirs(game, map + 2, line, 'W'));
-	else if (line[0] == 'C' && line[1] == ' ')
+	else if (map[0] == 'C' && map[1] == ' ')
 		return (ft_init_dirs(game, map + 1, line, 'C'));
-	else if (line[0] == 'F' && line[1] == ' ')
+	else if (map[0] == 'F' && map[1] == ' ')
 		return (ft_init_dirs(game, map + 1, line, 'F'));
 	else
 		ft_exit("Use correct orientation\n");

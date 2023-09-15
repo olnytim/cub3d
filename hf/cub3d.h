@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:12:04 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/10 20:12:13 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:17:55 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 // libs
-// # include <mlx.h>
-# include "../minilibx-linux/mlx.h"
+# include <mlx.h>
+// # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <sys/stat.h>

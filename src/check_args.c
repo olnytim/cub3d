@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 02:10:51 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/11 02:10:53 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:04:31 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_sizes(t_game *game, int ac, char **av)
 			ft_exit("Malloc error\n");
 		game->mapinfo = mapinfo;
 		game->mapinfo->fd = fd;
-		// close(fd);
 	}
 	else
 		ft_exit("Wrong number of args\n");
