@@ -1,11 +1,11 @@
-# Cub3D
+# cub3D
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/olnytim/cub3d)
 ![GitHub contributors](https://img.shields.io/github/contributors/olnytim/cub3d)
 ![GitHub stars](https://img.shields.io/github/stars/olnytim/cub3d?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/olnytim/cub3d?style=social)
 
-**Cub3D** is a 42school project that challenges you to create a simple 3D game using the raycasting technique.
+**cub3D** is a 42school project that challenges you to create a simple 3D game using the raycasting technique.
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@
 
 ## About The Project
 
-**Cub3D** is a project that teaches you the fundamentals of raycasting and game development. In this project, you'll create a simple 3D maze game where the player has to navigate through the maze and collect items.
+**cub3D** is a project that teaches you the fundamentals of raycasting and game development. In this project, you'll create a simple 3D maze game where the player has to navigate through the maze and collect items.
 
 ### Built With
 
@@ -29,7 +29,7 @@
 
 ## Getting Started
 
-To get started with **Cub3D**, follow these steps:
+To get started with **cub3D**, follow these steps:
 
 ### Prerequisites
 
