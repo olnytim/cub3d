@@ -34,6 +34,7 @@ CFLAGS		=	-Wall -Wextra -Werror
 
 # Default target
 all	:				$(NAME)
+				@echo > /dev/null
 
 # Rule for creating the library
 $(NAME)	:			$(OBJ_FILES)
