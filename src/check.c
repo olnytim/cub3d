@@ -16,11 +16,19 @@
 
 void	ft_print_info(t_game *game)
 {
+	// int	i;
+
+	// i = 0;
 	ft_printf("fd is: %d\n", game->mapinfo->fd);
 	ft_printf("no is: %s", game->mapinfo->n_path);
 	ft_printf("so is: %s", game->mapinfo->s_path);
 	ft_printf("eo is: %s", game->mapinfo->e_path);
 	ft_printf("wo is: %s", game->mapinfo->w_path);
+	// while (*game->mapinfo->map[i])
+	// {
+	// 	ft_printf("%d line is: %s", i, game->mapinfo->map[i]);
+	// 	++i;
+	// }
 }
 
 void	ft_sizes(t_game *game, int ac, char **av)

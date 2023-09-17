@@ -18,6 +18,7 @@
 # include <stdarg.h>
 # include <limits.h>
 # include <stdint.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 228
