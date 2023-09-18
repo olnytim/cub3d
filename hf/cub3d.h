@@ -35,6 +35,7 @@ typedef struct s_mapinfo
 	int		width;
 	char	**map;
 	char	*line;
+	char	*dir;
 	char	*n_path;
 	char	*s_path;
 	char	*e_path;

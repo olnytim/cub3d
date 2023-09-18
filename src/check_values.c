@@ -81,28 +81,42 @@ static int	ft_check_lines(t_game *game, char *map, char *line)
 	return (0);
 }
 
+static int	ft_check_chars(t_game *game, char **line)
+{
+	static int	flag;
+	char		*temp;
+
+	flag = 0;
+	*line = ft_strtrim(*line, "\n");
+	temp = *line;
+	while (*temp)
+	{
+		if ((*temp == 'N' || *temp == 'E' || *temp == 'W'
+			|| *temp == 'S') && flag == 0)
+		{
+			flag = 1;
+			game->mapinfo->dir = *temp;
+		}
+		else if (*temp != '1' && *temp != '0' && *temp != ' ')
+			ft_exit("Invalid chars\n");
+		++temp;
+	}
+	return (1);
+}
+
 void	ft_map_parse(t_game *game, char *line)
 {
-	int		i;
-	char	*next_line;
-
-	i = 0;
-	game->mapinfo->map = (char **)malloc(sizeof(char *) * 13);
-	while ((next_line = get_next_line(game->mapinfo->fd)))
+	while (*line == '\n')
 	{
-		line = next_line;
-		if (*line == '\n')
-		{
-			free(line);
-			continue ;
-		}
-		game->mapinfo->map[i] = ft_strdup(line);
 		free(line);
-		printf("%d map is %s", i, game->mapinfo->map[i]);
-		++i;
+		line = get_next_line(game->mapinfo->fd);
 	}
-	game->mapinfo->map[i] = NULL;
-	ft_check_end(game);
+	if (!line)
+		ft_exit("There is no map in file!\n");
+	// now try to count lines of map
+	while (ft_check_chars(game, &line))
+	{
+	}
 }
 
 void	ft_path_parse(t_game *game)
@@ -121,5 +135,6 @@ void	ft_path_parse(t_game *game)
 		if (!game->mapinfo->line)
 			ft_exit("File is empty\n");
 	}
-	// ft_map_parse(game, game->mapinfo->line);
+	free(line);
+	ft_map_parse(game, game->mapinfo->line);
 }

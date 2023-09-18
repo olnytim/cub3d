@@ -41,3 +41,8 @@ int	ft_check_path_color(char *line)
 	}
 	return (1);
 }
+
+int	ft_check_lines(t_game *game)
+{
+	
+}
