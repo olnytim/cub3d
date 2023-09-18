@@ -84,19 +84,25 @@ static int	ft_check_lines(t_game *game, char *map, char *line)
 void	ft_map_parse(t_game *game, char *line)
 {
 	int		i;
+	char	*next_line;
 
 	i = 0;
-	printf("hi there\n");
-	game->mapinfo->map = malloc(sizeof(char *) * 16);
-	while (*line)
+	game->mapinfo->map = (char **)malloc(sizeof(char *) * 13);
+	while ((next_line = get_next_line(game->mapinfo->fd)))
 	{
-		line = get_next_line(game->mapinfo->fd);
-		game->mapinfo->map[i] = ft_strdup(line);
-		printf("%d line is %s", i, line);
+		line = next_line;
 		if (*line == '\n')
+		{
+			free(line);
 			continue ;
+		}
+		game->mapinfo->map[i] = ft_strdup(line);
+		free(line);
+		printf("%d map is %s", i, game->mapinfo->map[i]);
 		++i;
 	}
+	game->mapinfo->map[i] = NULL;
+	ft_check_end(game);
 }
 
 void	ft_path_parse(t_game *game)
@@ -115,5 +121,5 @@ void	ft_path_parse(t_game *game)
 		if (!game->mapinfo->line)
 			ft_exit("File is empty\n");
 	}
-	ft_map_parse(game, game->mapinfo->line);
+	// ft_map_parse(game, game->mapinfo->line);
 }

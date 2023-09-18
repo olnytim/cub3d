@@ -24,6 +24,8 @@ void	ft_print_info(t_game *game)
 	ft_printf("so is: %s", game->mapinfo->s_path);
 	ft_printf("eo is: %s", game->mapinfo->e_path);
 	ft_printf("wo is: %s", game->mapinfo->w_path);
+	ft_printf("fc is: %s", game->mapinfo->f_color);
+	ft_printf("cc is: %s", game->mapinfo->c_color);
 	// while (*game->mapinfo->map[i])
 	// {
 	// 	ft_printf("%d line is: %s", i, game->mapinfo->map[i]);
