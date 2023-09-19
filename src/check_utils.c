@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:22:58 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/19 15:25:56 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:43:38 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,3 @@ int	ft_check_path_color(char *line)
 	}
 	return (1);
 }
-
-// int	ft_check_lines(t_game *game)
-// {
-	
-// }

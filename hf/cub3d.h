@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:12:04 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/19 15:27:04 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:33:59 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_print_info(t_game *game);
 void	check_position(char pos, char play1er);
 void	ft_parse(t_game *game, int ac, char **av);
 void	ft_sizes(t_game *game, int ac, char **av);
+void	ft_map_parse(t_game *game, char *line);
 
 int		ft_check_path_color(char *line);
 
