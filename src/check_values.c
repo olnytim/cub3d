@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 22:31:41 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/15 22:38:59 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:14:34 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,31 +81,50 @@ static int	ft_check_lines(t_game *game, char *map, char *line)
 	return (0);
 }
 
-static int	ft_check_chars(t_game *game, char **line)
-{
-	static int	flag;
-	char		*temp;
+// static int	ft_check_chars(t_game *game, char **line)
+// {
+// 	static int	flag;
+// 	char		*temp;
 
-	flag = 0;
-	*line = ft_strtrim(*line, "\n");
-	temp = *line;
-	while (*temp)
+// 	flag = 0;
+// 	*line = ft_strtrim(*line, "\n");
+// 	temp = *line;
+// 	while (*temp)
+// 	{
+// 		if ((*temp == 'N' || *temp == 'E' || *temp == 'W'
+// 			|| *temp == 'S') && flag == 0)
+// 		{
+// 			flag = 1;
+// 			game->mapinfo->dir = *temp;
+// 		}
+// 		else if (*temp != '1' && *temp != '0' && *temp != ' ')
+// 			ft_exit("Invalid chars\n");
+// 		++temp;
+// 	}
+// 	return (1);
+// }
+
+void	count_lines(t_game *game, int *amount) 
+{
+	char	buffer[2];
+	char	prev_char = '\0';
+
+	while (read(game->mapinfo->fd, buffer, 1) > 0)
 	{
-		if ((*temp == 'N' || *temp == 'E' || *temp == 'W'
-			|| *temp == 'S') && flag == 0)
-		{
-			flag = 1;
-			game->mapinfo->dir = *temp;
-		}
-		else if (*temp != '1' && *temp != '0' && *temp != ' ')
-			ft_exit("Invalid chars\n");
-		++temp;
+		if (buffer[0] == '\n')
+			(*amount)++;
+		prev_char = buffer[0];
+		buffer[1] = '\0';
 	}
-	return (1);
+	if (prev_char != '\n')
+		(*amount)++;
 }
 
 void	ft_map_parse(t_game *game, char *line)
 {
+	int	amount;
+
+	amount = 1;
 	while (*line == '\n')
 	{
 		free(line);
@@ -113,10 +132,12 @@ void	ft_map_parse(t_game *game, char *line)
 	}
 	if (!line)
 		ft_exit("There is no map in file!\n");
+	count_lines(game, &amount);
+	printf("amount is: %d\n", amount);
 	// now try to count lines of map
-	while (ft_check_chars(game, &line))
-	{
-	}
+	// while (ft_check_chars(game, &line))
+	// {
+	// }
 }
 
 void	ft_path_parse(t_game *game)

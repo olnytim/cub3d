@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:12:04 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/15 22:38:53 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:27:04 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_mapinfo
 	int		width;
 	char	**map;
 	char	*line;
-	char	*dir;
+	char	dir;
 	char	*n_path;
 	char	*s_path;
 	char	*e_path;
