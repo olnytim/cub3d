@@ -39,9 +39,7 @@ static int	ft_check_chars(t_game *game, char **line)
 {
 	static int	flag;
 	char		*temp;
-	int			i;
 
-	i = 0;
 	*line = ft_strtrim(*line, "\n");
 	temp = *line;
 	while (*temp)
@@ -61,20 +59,12 @@ static int	ft_check_chars(t_game *game, char **line)
 
 static void	count_lines(t_game *game, int *amount)
 {
-	char	buffer[2];
-	char	prev_char;
+	int		fd;
 
-	prev_char = '\0';
-	while (read(game->mapinfo->fd, buffer, 1) > 0)
-	{
-		if (buffer[0] == '\n')
-			(*amount)++;
-		prev_char = buffer[0];
-		buffer[1] = '\0';
-	}
-	if (prev_char != '\n')
-		(*amount)++;
-	close(game->mapinfo->fd);
+	// game->mapinfo->fd = open(game->mapinfo->address, O_RDONLY);
+	// if (fd < 0)
+	// 	ft_exit("Wrong file\nTry to use correct file\n");
+	game->mapinfo->line = get_next_line(game->mapinfo->fd);
 }
 
 static void	ft_add_lines(t_game *game, char *line)
@@ -95,13 +85,15 @@ void	ft_map_parse(t_game *game, char *line)
 	while (*line == '\n')
 	{
 		free(line);
+		++game->mapinfo->raws_count;
 		line = get_next_line(game->mapinfo->fd);
 	}
 	if (!line)
 		ft_exit("There is no map in file!\n");
+	close(game->mapinfo->fd);
 	count_lines(game, &amount);
 	printf("amount is: %d\n", amount);
-	game->mapinfo->map = malloc(sizeof(char *) * (amount + 2));
+	game->mapinfo->map = malloc(sizeof(char *) * (13 + 2));
 	if (!game->mapinfo->map)
 		ft_exit("Malloc error\n");
 	while (ft_check_chars(game, &line))
@@ -112,5 +104,5 @@ void	ft_map_parse(t_game *game, char *line)
 			break ;
 			//err
 	}
-	game->mapinfo->map[amount + 1] = NULL;
+	game->mapinfo->map[13 + 1] = NULL;
 }

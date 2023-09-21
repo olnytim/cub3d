@@ -17,6 +17,7 @@
 void	ft_print_info(t_game *game)
 {
 	ft_printf("fd is: %d\n", game->mapinfo->fd);
+	ft_printf("raws_count is: %d\n", game->mapinfo->raws_count);
 	ft_printf("no is: %s", game->mapinfo->n_path);
 	ft_printf("so is: %s", game->mapinfo->s_path);
 	ft_printf("eo is: %s", game->mapinfo->e_path);
@@ -43,6 +44,7 @@ void	ft_sizes(t_game *game, int ac, char **av)
 		if (!mapinfo)
 			ft_exit("Malloc error\n");
 		game->mapinfo = mapinfo;
+		game->mapinfo->address = ft_strdup(av[1]);
 		game->mapinfo->fd = fd;
 	}
 	else

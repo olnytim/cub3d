@@ -64,6 +64,7 @@ void	ft_path_parse(t_game *game)
 
 	line = ft_strdup("NSEWCF");
 	game->mapinfo->line = get_next_line(game->mapinfo->fd);
+	game->mapinfo->raws_count = 1;
 	if (!game->mapinfo->line)
 		ft_exit("File is empty\n");
 	while (!ft_check_path_color(line)
@@ -71,10 +72,10 @@ void	ft_path_parse(t_game *game)
 	{
 		free(game->mapinfo->line);
 		game->mapinfo->line = get_next_line(game->mapinfo->fd);
+		++game->mapinfo->raws_count;
 		if (!game->mapinfo->line)
 			ft_exit("File is empty\n");
 	}
 	free(line);
-	ft_print_info(game);
 	ft_map_parse(game, game->mapinfo->line);
 }

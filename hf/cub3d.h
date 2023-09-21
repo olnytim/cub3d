@@ -31,8 +31,8 @@ typedef struct s_mapinfo
 {
 	int		**lines;
 	int		fd;
-	int		height;
-	int		width;
+	int		raws_count;
+	char	*address;
 	char	**map;
 	char	*line;
 	char	dir;
