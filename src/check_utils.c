@@ -19,12 +19,6 @@ char	*ft_skip_spaces(char *line)
 	return (line);
 }
 
-void	check_position(char pos, char player)
-{
-	if (pos != '1' && pos != '0' && pos != player)
-		ft_exit("Wrong fill of map");
-}
-
 void	ft_empty(char *line)
 {
 	if (!*line)
@@ -40,4 +34,38 @@ int	ft_check_path_color(char *line)
 		++line;
 	}
 	return (1);
+}
+
+static void	check_position(char pos, char player)
+{
+	if (pos != '1' && pos != '0' && pos != player)
+		ft_exit("Wrong fill of map");
+}
+
+void	ft_check_fence(t_game *game, int x, int y)
+{
+	while (game->map->map[y])
+	{
+		x = 0;
+		while (game->map->map[y][x])
+		{
+			if (game->map->map[y][x] == game->map->dir)
+			{
+				game->player->pos_x = x;
+				game->player->pos_y = y;
+				game->map->map[y][x] = '0';
+			}
+			if (game->map->map[y][x] == '0')
+			{
+				if (y == 0 || y == game->map->map_size)
+					ft_exit("There is no walls in first or last line\n");
+				check_position(game->map->map[y + 1][x], game->map->dir);
+				check_position(game->map->map[y - 1][x], game->map->dir);
+				check_position(game->map->map[y][x + 1], game->map->dir);
+				check_position(game->map->map[y][x - 1], game->map->dir);
+			}
+			++x;
+		}
+		++y;
+	}
 }

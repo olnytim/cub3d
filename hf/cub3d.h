@@ -27,7 +27,7 @@
 # define SCREEN_HEIGHT 480
 
 // define structs
-typedef struct s_mapinfo
+typedef struct s_map
 {
 	int		**lines;
 	int		fd;
@@ -43,14 +43,14 @@ typedef struct s_mapinfo
 	char	*w_path;
 	char	*c_color;
 	char	*f_color;
-}	t_mapinfo;
+}	t_map;
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
 	double	dir_x;
 	double	dir_y;
+	double	pos_x;
+	double	pos_y;
 	double	plane_x;
 	double	plane_y;
 }	t_player;
@@ -58,22 +58,23 @@ typedef struct s_player
 typedef struct s_game
 {
 	t_player	*player;
-	t_mapinfo	*mapinfo;
+	t_map	*map;
 }	t_game;
 
 // list of functions
 /* exit functions */
 void	ft_exit(char *str);
+void	malloc_err(int condition, char *str);
 
 /* parse functions */
 void	ft_empty(char *line);
 char	*ft_skip_spaces(char *line);
 void	ft_path_parse(t_game *game);
 void	ft_print_info(t_game *game);
-void	check_position(char pos, char play1er);
 void	ft_parse(t_game *game, int ac, char **av);
 void	ft_sizes(t_game *game, int ac, char **av);
 void	ft_map_parse(t_game *game, char *line);
+void	ft_check_fence(t_game *game, int x, int y);
 
 int		ft_check_path_color(char *line);
 

@@ -17,3 +17,12 @@ void	ft_exit(char *str)
 	ft_printf("%s", str);
 	exit(1);
 }
+
+void	malloc_err(int condition, char *str)
+{
+	if (condition)
+	{
+		printf("cub3D: malloc error: %s\n", str);
+		exit(1);
+	}
+}

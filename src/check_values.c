@@ -23,17 +23,17 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	if (!*map || *map == '\n')
 		ft_exit("Input invalid path for orientation\n");
 	if (rem == 'N')
-		game->mapinfo->n_path = ft_strdup(map);
+		game->map->n_path = ft_strdup(map);
 	else if (rem == 'S')
-		game->mapinfo->s_path = ft_strdup(map);
+		game->map->s_path = ft_strdup(map);
 	else if (rem == 'E')
-		game->mapinfo->e_path = ft_strdup(map);
+		game->map->e_path = ft_strdup(map);
 	else if (rem == 'W')
-		game->mapinfo->w_path = ft_strdup(map);
+		game->map->w_path = ft_strdup(map);
 	else if (rem == 'C')
-		game->mapinfo->c_color = ft_strdup(map);
+		game->map->c_color = ft_strdup(map);
 	else if (rem == 'F')
-		game->mapinfo->f_color = ft_strdup(map);
+		game->map->f_color = ft_strdup(map);
 	return (1);
 }
 
@@ -63,19 +63,21 @@ void	ft_path_parse(t_game *game)
 	char	*line;
 
 	line = ft_strdup("NSEWCF");
-	game->mapinfo->line = get_next_line(game->mapinfo->fd);
-	game->mapinfo->raws_count = 1;
-	if (!game->mapinfo->line)
+	game->map->line = get_next_line(game->map->fd);
+	game->map->raws_count = 1;
+	game->player->pos_x = 0;
+	game->player->pos_y = 0;
+	if (!game->map->line)
 		ft_exit("File is empty\n");
 	while (!ft_check_path_color(line)
-		&& ft_check_lines(game, game->mapinfo->line, line))
+		&& ft_check_lines(game, game->map->line, line))
 	{
-		free(game->mapinfo->line);
-		game->mapinfo->line = get_next_line(game->mapinfo->fd);
-		++game->mapinfo->raws_count;
-		if (!game->mapinfo->line)
+		free(game->map->line);
+		game->map->line = get_next_line(game->map->fd);
+		++game->map->raws_count;
+		if (!game->map->line)
 			ft_exit("File is empty\n");
 	}
 	free(line);
-	ft_map_parse(game, game->mapinfo->line);
+	ft_map_parse(game, game->map->line);
 }
