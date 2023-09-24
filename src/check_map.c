@@ -12,35 +12,38 @@
 
 #include "../hf/cub3d.h"
 
-// static void	ft_check_end(t_game *game)
-// {
-// 	char	*line;
-
-// 	line = get_next_line(game->mapinfo->fd);
-// 	if (!*line)
-// 		return ;
-// 	while (*line && line)
-// 	{
-// 		if (*line == '\n')
-// 		{
-// 			free(line);
-// 			line = get_next_line(game->mapinfo->fd);
-// 		}
-// 		else if (*line != '\n')
-// 		{
-// 			free(line);
-// 			ft_exit("Wrong map\nUse correct one\n");
-// 		}
-// 	}
-// 	free(line);
-// }
+static int	ft_check_end(t_game *game, char *line)
+{
+	while (*line && line)
+	{
+		if (*line == '\n')
+		{
+			free(line);
+			line = get_next_line(game->mapinfo->fd);
+			if (!line)
+				return (1);
+		}
+		else if (*line != '\n')
+		{
+			free(line);
+			ft_exit("Wrong map\nUse correct one\n");
+		}
+	}
+	if (line)
+		free(line);
+	return (0);
+}
 
 static int	ft_check_chars(t_game *game, char **line)
 {
 	static int	flag;
 	char		*temp;
 
-	*line = ft_strtrim(*line, "\n");
+	if (!*line)
+		return (0);
+	temp = ft_strtrim(*line, "\n");
+	free(*line);
+	*line = temp;
 	temp = *line;
 	while (*temp)
 	{
@@ -57,31 +60,39 @@ static int	ft_check_chars(t_game *game, char **line)
 	return (1);
 }
 
-static void	count_lines(t_game *game, int *amount)
+static void	count_lines(t_game *game, char **line)
 {
-	int		fd;
-
-	// game->mapinfo->fd = open(game->mapinfo->address, O_RDONLY);
-	// if (fd < 0)
-	// 	ft_exit("Wrong file\nTry to use correct file\n");
-	game->mapinfo->line = get_next_line(game->mapinfo->fd);
+	game->mapinfo->map_size = 0;
+	while (**line)
+	{
+		game->mapinfo->map_size++;
+		free(*line);
+		*line = get_next_line(game->mapinfo->fd);
+		if (!*line)
+			break ;
+	}
+	close(game->mapinfo->fd);
+	game->mapinfo->fd = open(game->mapinfo->address, O_RDONLY);
+	if (game->mapinfo->fd < 0)
+		ft_exit("Wrong file\nTry to use correct file\n");
+	while (game->mapinfo->raws_count--)
+	{
+		free(*line);
+		*line = get_next_line(game->mapinfo->fd);
+	}
 }
 
 static void	ft_add_lines(t_game *game, char *line)
 {
 	static int	i;
 
-	game->mapinfo->map[i] = ft_strdup(line);
-	free(line);
+	game->mapinfo->map[i] = line;
 	printf("map[%d] is: %s\n", i, game->mapinfo->map[i]);
 	++i;
 }
 
 void	ft_map_parse(t_game *game, char *line)
 {
-	int	amount;
-
-	amount = 1;
 	while (*line == '\n')
 	{
 		free(line);
@@ -90,19 +101,20 @@ void	ft_map_parse(t_game *game, char *line)
 	}
 	if (!line)
 		ft_exit("There is no map in file!\n");
-	close(game->mapinfo->fd);
-	count_lines(game, &amount);
-	printf("amount is: %d\n", amount);
-	game->mapinfo->map = malloc(sizeof(char *) * (13 + 2));
+	count_lines(game, &line);
+	game->mapinfo->map = malloc(sizeof(char *)
+			* (game->mapinfo->map_size + 1));
 	if (!game->mapinfo->map)
 		ft_exit("Malloc error\n");
 	while (ft_check_chars(game, &line))
 	{
 		ft_add_lines(game, line);
+		free(line);
 		line = get_next_line(game->mapinfo->fd);
 		if (!line)
 			break ;
-			//err
+		if (*line == '\n' && ft_check_end(game, line))
+			break ;
 	}
-	game->mapinfo->map[13 + 1] = NULL;
+	game->mapinfo->map[game->mapinfo->map_size] = NULL;
 }

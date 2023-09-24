@@ -14,7 +14,7 @@ MLX_HEADER = -I$(MINILIBX_PATH)
 #
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
-FSANITIZE = -fsanitize=address
+FSANITIZE = #-fsanitize=address
 MINILIBX = -L./minilibx-linux -lmlx -lm -lXext -lX11
 #
 SRC = $(addprefix $(PREF_SRC)/, main.c check_utils.c check_map.c check_values.c check.c exit.c)
@@ -26,12 +26,12 @@ all: add $(NAME)
 	@echo > /dev/null
 #
 $(NAME): $(OBJ) $(LIBFTA)
-	@$(CC) $(CFLAGS) $(SRC) $(LIBFTA) -o $@
+	@$(CC) $(CFLAGS) $(FSANITIZE) $(SRC) $(LIBFTA) -o $@
 	@echo "Executable file $(NAME) created successfully!"
 #
 $(PREF_OBJ)/%.o: $(PREF_SRC)/%.c Makefile
 	@mkdir -p $(PREF_OBJ)
-	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+	@$(CC) $(CFLAGS) $(FSANITIZE) $(HEADER) -c $< -o $@
 #---------------------------------
 #
 add:

@@ -32,6 +32,7 @@ typedef struct s_mapinfo
 	int		**lines;
 	int		fd;
 	int		raws_count;
+	int		map_size;
 	char	*address;
 	char	**map;
 	char	*line;
@@ -66,7 +67,6 @@ void	ft_exit(char *str);
 
 /* parse functions */
 void	ft_empty(char *line);
-void	ft_check_end(t_game *game);
 char	*ft_skip_spaces(char *line);
 void	ft_path_parse(t_game *game);
 void	ft_print_info(t_game *game);

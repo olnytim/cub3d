@@ -18,6 +18,6 @@ int	main(int ac, char **av)
 
 	game = malloc(sizeof(t_game));
 	ft_parse(game, ac, av);
-	// system("leaks cub3D");
+	system("leaks cub3D");
 	return (0);
 }

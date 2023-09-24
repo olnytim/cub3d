@@ -18,6 +18,8 @@ void	ft_print_info(t_game *game)
 {
 	ft_printf("fd is: %d\n", game->mapinfo->fd);
 	ft_printf("raws_count is: %d\n", game->mapinfo->raws_count);
+	ft_printf("map size is: %d\n", game->mapinfo->map_size);
+	ft_printf("address is: %s\n", game->mapinfo->address);
 	ft_printf("no is: %s", game->mapinfo->n_path);
 	ft_printf("so is: %s", game->mapinfo->s_path);
 	ft_printf("eo is: %s", game->mapinfo->e_path);
