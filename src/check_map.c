@@ -59,7 +59,7 @@ static int	ft_check_chars(t_game *game, char **line)
 	return (1);
 }
 
-static void	count_lines(t_game *game, char **line)
+void	count_lines(t_game *game, char **line)
 {
 	game->map->map_size = 0;
 	while (*line)
@@ -67,6 +67,13 @@ static void	count_lines(t_game *game, char **line)
 		game->map->map_size++;
 		free(*line);
 		*line = get_next_line(game->map->fd);
+		while (**line == '\n')
+		{
+			free(*line);
+			*line = get_next_line(game->map->fd);
+			if (!*line)
+				break ;
+		}
 	}
 	close(game->map->fd);
 	game->map->fd = open(game->map->address, O_RDONLY);
