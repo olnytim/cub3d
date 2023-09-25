@@ -73,6 +73,8 @@ void	count_lines(t_game *game, char **line)
 			*line = get_next_line(game->map->fd);
 			if (!*line)
 				break ;
+			if (**line != '\n')
+				ft_exit("Invalid map\nUse correct one\n");
 		}
 	}
 	close(game->map->fd);
