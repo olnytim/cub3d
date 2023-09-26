@@ -58,9 +58,9 @@ typedef struct s_player
 typedef struct s_game
 {
 	t_player	*player;
-	t_map	*map;
-	int	ceiling_color;
-	int	floor_color;
+	t_map		*map;
+	int			ceiling_color;
+	int			floor_color;
 }	t_game;
 
 // list of functions
