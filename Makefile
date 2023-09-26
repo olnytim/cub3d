@@ -14,10 +14,10 @@ MLX_HEADER = -I$(MINILIBX_PATH)
 #
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
-FSANITIZE = -fsanitize=address
+FSANITIZE = #-fsanitize=address
 MINILIBX = -L./minilibx-linux -lmlx -lm -lXext -lX11
 #
-SRC = $(addprefix $(PREF_SRC)/, main.c check_utils.c check_map.c check_values.c check.c exit.c)
+SRC = $(addprefix $(PREF_SRC)/, main.c check_utils.c check_map.c check_values.c check_colors.c check.c exit.c)
 OBJ = $(patsubst $(PREF_SRC)/%.c, $(PREF_OBJ)/%.o, $(SRC))
 #
 # Mac implementation

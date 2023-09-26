@@ -23,17 +23,17 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	if (!*map || *map == '\n')
 		ft_exit("Input invalid path for orientation\n");
 	if (rem == 'N')
-		game->map->n_path = ft_strdup(map);
+		game->map->n_path = ft_strtrim(ft_strdup(map), "\n");
 	else if (rem == 'S')
-		game->map->s_path = ft_strdup(map);
+		game->map->s_path = ft_strtrim(ft_strdup(map), "\n");
 	else if (rem == 'E')
-		game->map->e_path = ft_strdup(map);
+		game->map->e_path = ft_strtrim(ft_strdup(map), "\n");
 	else if (rem == 'W')
-		game->map->w_path = ft_strdup(map);
+		game->map->w_path = ft_strtrim(ft_strdup(map), "\n");
 	else if (rem == 'C')
-		game->map->c_color = ft_strdup(map);
+		game->map->c_color = ft_strtrim(ft_strdup(map), "\n");
 	else if (rem == 'F')
-		game->map->f_color = ft_strdup(map);
+		game->map->f_color = ft_strtrim(ft_strdup(map), "\n");
 	return (1);
 }
 

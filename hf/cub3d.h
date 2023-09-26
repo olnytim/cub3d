@@ -59,6 +59,8 @@ typedef struct s_game
 {
 	t_player	*player;
 	t_map	*map;
+	int	ceiling_color;
+	int	floor_color;
 }	t_game;
 
 // list of functions
@@ -75,6 +77,7 @@ void	ft_parse(t_game *game, int ac, char **av);
 void	ft_sizes(t_game *game, int ac, char **av);
 void	ft_map_parse(t_game *game, char *line);
 void	ft_check_fence(t_game *game, int x, int y);
+void	ft_convert_colors(t_game *game);
 
 int		ft_check_path_color(char *line);
 

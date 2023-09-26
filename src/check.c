@@ -20,12 +20,14 @@ void	ft_print_info(t_game *game)
 	ft_printf("raws_count is: %d\n", game->map->raws_count);
 	ft_printf("map size is: %d\n", game->map->map_size);
 	ft_printf("address is: %s\n", game->map->address);
-	ft_printf("no is: %s", game->map->n_path);
-	ft_printf("so is: %s", game->map->s_path);
-	ft_printf("eo is: %s", game->map->e_path);
-	ft_printf("wo is: %s", game->map->w_path);
-	ft_printf("fc is: %s", game->map->f_color);
-	ft_printf("cc is: %s", game->map->c_color);
+	ft_printf("no is: %s\n", game->map->n_path);
+	ft_printf("so is: %s\n", game->map->s_path);
+	ft_printf("eo is: %s\n", game->map->e_path);
+	ft_printf("wo is: %s\n", game->map->w_path);
+	ft_printf("fc is: %s\n", game->map->f_color);
+	ft_printf("cc is: %s\n", game->map->c_color);
+	ft_printf("ceiling color is: %d\n", game->ceiling_color);
+	ft_printf("floor color is: %d\n", game->floor_color);
 }
 
 void	ft_sizes(t_game *game, int ac, char **av)
@@ -60,5 +62,6 @@ void	ft_parse(t_game *game, int ac, char **av)
 {
 	ft_sizes(game, ac, av);
 	ft_path_parse(game);
+	ft_convert_colors(game);
 	ft_print_info(game);
 }
