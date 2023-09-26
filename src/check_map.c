@@ -93,7 +93,6 @@ static void	ft_add_lines(t_game *game, char *line)
 	static int	i;
 
 	game->map->map[i] = line;
-	printf("map[%d] is: %s\n", i, game->map->map[i]);
 	++i;
 }
 

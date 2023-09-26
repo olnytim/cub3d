@@ -79,5 +79,6 @@ void	ft_path_parse(t_game *game)
 			ft_exit("File is empty\n");
 	}
 	free(line);
+	ft_convert_colors(game);
 	ft_map_parse(game, game->map->line);
 }

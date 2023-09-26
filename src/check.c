@@ -16,6 +16,9 @@
 
 void	ft_print_info(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	ft_printf("fd is: %d\n", game->map->fd);
 	ft_printf("raws_count is: %d\n", game->map->raws_count);
 	ft_printf("map size is: %d\n", game->map->map_size);
@@ -28,6 +31,11 @@ void	ft_print_info(t_game *game)
 	ft_printf("cc is: %s\n", game->map->c_color);
 	ft_printf("ceiling color is: %d\n", game->ceiling_color);
 	ft_printf("floor color is: %d\n", game->floor_color);
+	while (i < game->map->map_size)
+	{
+		ft_printf("map[%d] is: %s\n", i, game->map->map[i]);
+		++i;
+	}
 }
 
 void	ft_sizes(t_game *game, int ac, char **av)
@@ -62,6 +70,5 @@ void	ft_parse(t_game *game, int ac, char **av)
 {
 	ft_sizes(game, ac, av);
 	ft_path_parse(game);
-	ft_convert_colors(game);
 	ft_print_info(game);
 }
