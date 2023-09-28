@@ -15,9 +15,13 @@
 int	main(int ac, char **av)
 {
 	t_game	*game;
+	void	*mlx;
 
 	game = malloc(sizeof(t_game));
 	ft_parse(game, ac, av);
 	// system("leaks cub3D");
+	mlx = mlx_init();
+	mlx_new_window(mlx, 500, 500, "Minilibx test");
+	mlx_loop(mlx);
 	return (0);
 }
