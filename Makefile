@@ -64,18 +64,22 @@ $(PREF_OBJ)/%.o: $(PREF_SRC)/%.c Makefile
 	@$(CC) $(CFLAGS) $(HEADER) $(MLX_HEADER) $(MINILIBX) -c $< -o $@
 #
 add:
-	@make -C $(LIBFT_PATH)
-	@make -C $(MINILIBX_PATH)
+	@if [[ (! -e $(MINILIBXA)) && (! -e $(LIBFTA)) ]]; then \
+		make -C $(MINILIBX_PATH) ; \
+		echo "Library libmlx.a created successfully!" ; \
+		make -C $(LIBFT_PATH) ; \
+	fi
+#
 clean:
 	@rm -rf $(PREF_OBJ)
 	@$(MAKE) -C $(LIBFT_PATH) clean
-	# @$(MAKE) -C $(MINILIBX_PATH) clean
+	@$(MAKE) -C $(MINILIBX_PATH) clean
 	@rm -rf *.dSYM
 #
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(LIBFTA)
-	# @rm -f $(MINILIBXA)
+	@rm -f $(MINILIBXA)
 #
 re: fclean all
 #
