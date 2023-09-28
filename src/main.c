@@ -93,6 +93,9 @@ int	ft_hook(int keycode, t_game *game)
 int	ft_mouse_hook(int button, int x, int y, t_game *game)
 {
 	(void)game;
+	// int	x;
+	// int	y;
+	// mlx_mouse_get_pos(game->mlx, game->win, &x, &y);
 	printf("keycode: %d\n", button);
 	printf("Mouse Position: X = %d, Y = %d\n", x, y);
 	return (0);
