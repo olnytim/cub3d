@@ -21,6 +21,7 @@
 # include <sys/types.h>
 # include <math.h>
 
+
 // set the sizes of map and screen
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
@@ -58,14 +59,26 @@ typedef struct s_game
 {
 	t_player	*player;
 	t_map		*map;
+	void		*mlx;
+	void		*win;
 	int			ceiling_color;
 	int			floor_color;
 }	t_game;
+
+// linux keys is the same as ascii
+enum {
+	W = 119,
+	S = 115,
+	D = 100,
+	A = 97,
+	ESC = 65307
+};
 
 // list of functions
 /* exit functions */
 void	ft_exit(char *str);
 void	malloc_err(int condition, char *str);
+int	ft_endgame(t_game *game);
 
 /* parse functions */
 void	ft_empty(char *line);

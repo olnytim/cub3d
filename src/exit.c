@@ -26,3 +26,10 @@ void	malloc_err(int condition, char *str)
 		exit(1);
 	}
 }
+
+int	ft_endgame(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	printf("Game Over!\n");
+	exit(0);
+}
