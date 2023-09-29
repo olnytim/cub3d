@@ -74,6 +74,10 @@ enum {
 	ESC = 65307
 };
 
+enum ColorRGB {
+	RGB_Red = 0
+};
+
 // list of functions
 /* exit functions */
 void	ft_exit(char *str);
