@@ -78,7 +78,7 @@ enum {
 /* exit functions */
 void	ft_exit(char *str);
 void	malloc_err(int condition, char *str);
-int	ft_endgame(t_game *game);
+int		ft_endgame(t_game *game);
 
 /* parse functions */
 void	ft_empty(char *line);

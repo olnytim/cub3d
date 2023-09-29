@@ -93,11 +93,10 @@ int	ft_hook(int keycode, t_game *game)
 int	ft_mouse_hook(int button, int x, int y, t_game *game)
 {
 	(void)game;
-	// int	x;
-	// int	y;
-	// mlx_mouse_get_pos(game->mlx, game->win, &x, &y);
+
+	mlx_mouse_get_pos(game->mlx, game->win, &x, &y);
 	printf("keycode: %d\n", button);
-	printf("Mouse Position: X = %d, Y = %d\n", x, y);
+	printf("Mouse position: X = %d, Y = %d\n", x, y);
 	return (0);
 }
 
@@ -112,22 +111,23 @@ int	main(int ac, char **av)
 	game = malloc(sizeof(t_game));
 	ft_parse(game, ac, av);
 	// system("leaks cub3D");
+
+	// init mlx win
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, 500, 500, "Cub3D");
+
+	// draw smth
 	img.img = mlx_new_image(game->mlx, 500, 500);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
 	ft_square(img, i, j);
 	drawCharInCircle(&img, i + 50, j + 50, 100, 0x00FF0000);
 	mlx_put_image_to_window(game->mlx, game->win, img.img, 0, 0);
+	
+	// hooks
 	mlx_hook(game->win, 17, 0, ft_endgame, game);
 	mlx_hook(game->win, 2, 1L<<0, ft_hook, game);
 	mlx_mouse_hook(game->win, ft_mouse_hook, game);
-	// while (1)
-	// {
-	// 	mlx_mouse_hook(game->win, ft_mouse_hook, game);
-	// 	usleep(100000);
-	// }
 	mlx_loop(game->mlx);
 	return (0);
 }
