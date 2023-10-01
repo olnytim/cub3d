@@ -21,7 +21,6 @@
 # include <sys/types.h>
 # include <math.h>
 
-
 // set the sizes of map and screen
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
@@ -29,20 +28,19 @@
 // define structs
 typedef struct s_map
 {
-	int		**lines;
-	int		fd;
 	int		raws_count;
 	int		map_size;
-	char	*address;
+	int		fd;
 	char	**map;
+	char	*address;
 	char	*line;
-	char	dir;
 	char	*n_path;
 	char	*s_path;
 	char	*e_path;
 	char	*w_path;
 	char	*c_color;
 	char	*f_color;
+	char	dir;
 }	t_map;
 
 typedef struct s_player
@@ -55,10 +53,44 @@ typedef struct s_player
 	double	plane_y;
 }	t_player;
 
+typedef struct s_rays
+{
+	double	time;
+	double	old_time;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		hit;
+	int		side;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+}	t_rays;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_img;
+
 typedef struct s_game
 {
 	t_player	*player;
 	t_map		*map;
+	t_img		*img;
+	t_rays		*rays;
 	void		*mlx;
 	void		*win;
 	int			ceiling_color;
@@ -96,5 +128,9 @@ void	ft_check_fence(t_game *game, int x, int y);
 void	ft_convert_colors(t_game *game);
 
 int		ft_check_path_color(char *line);
+
+/* hooks */
+int		ft_mouse_hook(int button, int x, int y, t_game *game);
+int		ft_hook(int keycode, t_game *game);
 
 #endif

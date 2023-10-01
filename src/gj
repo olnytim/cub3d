@@ -1,0 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                    *._           _.*   @   */
+/*   gj.c                                               |\  \\_//  /|     #   */
+/*                                                      \/         \/     $   */
+/*   By: olnytim <yearagotomorrow@gmail.com>           _|_    V  V  |_    %   */
+/*                                                  *=.    =  _*  =   .=* ^   */
+/*   Created: 2023/10/02 02:42:04 by olnytim           \= ___________=/   &   */
+/*   Updated: 2023/10/02 02:42:08 by olnytim                /     \       *   */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../hf/cub3d.h"
+
+void	ft_square(t_data img, int i, int j)
+{
+	while (i < 300)
+		my_mlx_pixel_put(&img, ++i, j, 0x00FF0000);
+	while (j < 300)
+		my_mlx_pixel_put(&img, i, ++j, 0x00FF0000);
+	while (i > 200)
+		my_mlx_pixel_put(&img, --i, j, 0x00FF0000);
+	while (j > 200)
+		my_mlx_pixel_put(&img, i, --j, 0x00FF0000);
+}
+
+void	ft_drawCharInCircle(t_data *img, int centerX,\
+		int centerY, int radius, int color)
+{
+	int x = radius;
+	int y = 0;
+	int decisionOver2 = 1 - x;
+
+	while (y <= x)
+	{
+		my_mlx_pixel_put(img, centerX + x, centerY + y, color);
+		my_mlx_pixel_put(img, centerX - x, centerY + y, color);
+		my_mlx_pixel_put(img, centerX + x, centerY - y, color);
+		my_mlx_pixel_put(img, centerX - x, centerY - y, color);
+		my_mlx_pixel_put(img, centerX + y, centerY + x, color);
+		my_mlx_pixel_put(img, centerX - y, centerY + x, color);
+		my_mlx_pixel_put(img, centerX + y, centerY - x, color);
+		my_mlx_pixel_put(img, centerX - y, centerY - x, color);
+		y++;
+		if (decisionOver2 <= 0) {
+			decisionOver2 += 2 * y + 1;
+		} else {
+			x--;
+			decisionOver2 += 2 * (y - x) + 1;
+		}
+	}
+	int charX = centerX - 4;
+	int charY = centerY - 4;
+	my_mlx_pixel_put(img, charX + 2, charY, color);
+	my_mlx_pixel_put(img, charX + 1, charY + 1, color);
+	my_mlx_pixel_put(img, charX + 3, charY + 1, color);
+	my_mlx_pixel_put(img, charX, charY + 2, color);
+	my_mlx_pixel_put(img, charX + 4, charY + 2, color);
+}
