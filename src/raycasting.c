@@ -12,7 +12,7 @@
 
 #include "../hf/cub3d.h"
 
-void	ft_player_init(t_game *game, t_player *player)
+static void	ft_player_init(t_game *game, t_player *player)
 {
 	if (game->mapinfo->dir == 'N')
 	{
@@ -38,30 +38,30 @@ void	ft_player_init(t_game *game, t_player *player)
 	player->plane_y = 0.66;
 }
 
-t_rays	*ft_rays_init(t_game *game, int *x)
+static void	ft_rays_init(t_game *game, t_rays *rays, int *x)
 {
-	t_rays	*rays;
-
-	rays = malloc(sizeof(t_rays));
-	malloc_err(rays, "rays");
 	rays->time = 0;
 	rays->old_time = 0;
-	rays->camera_x = 2 * x / SCREEN_WIDTH - 1;
+	rays->camera_x = 2 * *x / SCREEN_WIDTH - 1;
 	rays->ray_dir_x = game->player->dir_x
 		+ game->player->plane_x * rays->camera_x;
 	rays->ray_dir_y = game->player->dir_y
 		+ game->player->plane_y * rays->camera_x;
-	rays->map_x = int (game->player->pos_x);
-	rays->map_y = int (game->player->pos_y);
-	rays->delta_dist_x = (rays->ray_dir_x == 0)
-		? 1e30 : fabs(1 / rays->ray_dir_x);
-	rays->delta_dist_y = (rays->ray_dir_y == 0)
-		? 1e30 : fabs(1 / rays->ray_dir_y);
-	rays->hit = 1;
+	rays->map_x = (int)game->player->pos_x;
+	rays->map_y = (int)game->player->pos_y;
+	if (rays->ray_dir_x == 0)
+		rays->delta_dist_x = 1e30;
+	else
+		rays->delta_dist_x = fabs(1 / rays->ray_dir_x);
+	if (rays->ray_dir_y == 0)
+		rays->delta_dist_y = 1e30;
+	else
+		rays->delta_dist_y = fabs(1 / rays->ray_dir_y);
+	rays->hit = 0;
 	return (rays);
 }
 
-void	ft_step_calc(t_game *game, t_rays *rays)
+static void	ft_step_calc(t_game *game, t_rays *rays)
 {
 	if (rays->ray_dir_x < 0)
 	{
@@ -89,7 +89,7 @@ void	ft_step_calc(t_game *game, t_rays *rays)
 	}
 }
 
-void	ft_dda(t_game *game, t_rays *rays)
+static void	ft_dda(t_game *game, t_rays *rays)
 {
 	while (rays->hit == 0)
 	{
@@ -118,15 +118,28 @@ void	ft_dda(t_game *game, t_rays *rays)
 
 void	ft_raycasting(t_game *game)
 {
-	int	x;
+	int		x;
 
 	x = 0;
+	ft_fc_colors(game, game->img);
 	ft_player_init(game, game->player);
+	game->img = malloc(sizeof(t_img));
+	game->img->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	game->img->addr = mlx_get_data_addr(game->img->img, game->img->b_p_p, \
+			game->img->line_length, game->img->endian);
+	game->rays = malloc(sizeof(t_rays));
+	malloc_err(rays, "rays");
 	while (x < SCREEN_WIDTH)
 	{
-		game->rays = ft_rays_init(game, &x);
+		ft_rays_init(game, game->rays, &x);
 		ft_step_calc(game, game->rays);
 		ft_dda(game, game->rays);
-		ft_draw_line(); // not done yet
+		ft_render_walls(game, game->rays, game->img);
+		ft_walls_side(game, game->rays);
+		ft_tex_rendering(game, game->rays, game->img, &x);
+		++x;
 	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
+	mlx_destroy_image(game->mlx, game->img->img);
+	free(game->img);
 }

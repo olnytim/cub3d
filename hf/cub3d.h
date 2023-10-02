@@ -24,6 +24,8 @@
 // set the sizes of map and screen
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
 
 // define structs
 typedef struct s_map
@@ -65,24 +67,33 @@ typedef struct s_rays
 	double	delta_dist_x;
 	double	delta_dist_y;
 	double	perp_wall_dist;
+	double	wall_x;
+	double	tex_pos;
+	int		line_height;
 	int		hit;
 	int		side;
 	int		map_x;
 	int		map_y;
 	int		step_x;
 	int		step_y;
+	int		tex_x;
+	int		tex_y;
+	int		tex_height;
 }	t_rays;
 
 typedef struct s_img
 {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
+	int		b_p_p;
 	int		line_length;
 	int		endian;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	int		color;
+	int		height;
+	int		width;
 }	t_img;
 
 typedef struct s_game
@@ -95,9 +106,14 @@ typedef struct s_game
 	void		*win;
 	int			ceiling_color;
 	int			floor_color;
+	t_img		*n;
+	t_img		*s;
+	t_img		*e;
+	t_img		*w;
+	t_img		*wall_t;
 }	t_game;
 
-// linux keys is the same as ascii
+// linux keys is the same as ascii?
 enum {
 	W = 119,
 	S = 115,
@@ -106,9 +122,13 @@ enum {
 	ESC = 65307
 };
 
-enum ColorRGB {
-	RGB_Red = 0
-};
+typedef struct {
+	int	red;
+	int	green;
+	int	blue;
+	int	white;
+	int	yellow;
+} ColorRGB;
 
 // list of functions
 /* exit functions */
@@ -117,8 +137,8 @@ void	malloc_err(int condition, char *str);
 int		ft_endgame(t_game *game);
 
 /* parse functions */
-void	ft_empty(char *line);
 char	*ft_skip_spaces(char *line);
+void	ft_empty(char *line);
 void	ft_path_parse(t_game *game);
 void	ft_print_info(t_game *game);
 void	ft_parse(t_game *game, int ac, char **av);
@@ -126,11 +146,16 @@ void	ft_sizes(t_game *game, int ac, char **av);
 void	ft_map_parse(t_game *game, char *line);
 void	ft_check_fence(t_game *game, int x, int y);
 void	ft_convert_colors(t_game *game);
-
 int		ft_check_path_color(char *line);
 
 /* hooks */
 int		ft_mouse_hook(int button, int x, int y, t_game *game);
 int		ft_hook(int keycode, t_game *game);
+
+/* raycasting */
+void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int *x);
+void	ft_render_walls(t_game *game, t_rays *rays, t_img *img);
+void	ft_walls_side(t_game *game, t_rays *rays);
+void	ft_fc_colors(t_game *game, t_img *img);
 
 #endif
