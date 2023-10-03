@@ -117,7 +117,7 @@ static void	ft_dda(t_game *game, t_rays *rays)
 		// 	rays->hit = 1;
 		// 	break ;
 		// }
-		if (game->map->map[rays->map_x][rays->map_y])
+		if (game->map->map[rays->map_y][rays->map_x])
 			rays->hit = 1;
 	}
 	if (rays->side == 0)
