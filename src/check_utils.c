@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hf/cub3d.h"
+#include "../include/cub3D.h"
+#include <cub3D.h>
 
 char	*ft_skip_spaces(char *line)
 {

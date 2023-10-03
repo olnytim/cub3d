@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hf/cub3d.h"
+#include "../include/cub3D.h"
+#include <cub3D.h>
 
 void	ft_square(t_data img, int i, int j)
 {

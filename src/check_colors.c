@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hf/cub3d.h"
+#include "../include/cub3D.h"
+#include <cub3D.h>
 
 static void	ft_trim_spaces(char **arr)
 {

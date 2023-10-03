@@ -100,12 +100,12 @@ typedef struct s_game
 {
 	t_player	*player;
 	t_map		*map;
-	t_img		*img;
 	t_rays		*rays;
 	void		*mlx;
 	void		*win;
 	int			ceiling_color;
 	int			floor_color;
+	t_img		*img;
 	t_img		*n;
 	t_img		*s;
 	t_img		*e;
@@ -114,13 +114,21 @@ typedef struct s_game
 }	t_game;
 
 // linux keys is the same as ascii?
+//enum {
+//	W = 119,
+//	S = 115,
+//	D = 100,
+//	A = 97,
+//	ESC = 65307
+//} ;
+
 enum {
-	W = 119,
-	S = 115,
-	D = 100,
-	A = 97,
-	ESC = 65307
-};
+	W = 13,
+	S = 1,
+	D = 2,
+	A = 0,
+	ESC = 53
+} ;
 
 typedef struct {
 	int	red;
@@ -157,5 +165,6 @@ void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int *x);
 void	ft_render_walls(t_game *game, t_rays *rays, t_img *img);
 void	ft_walls_side(t_game *game, t_rays *rays);
 void	ft_fc_colors(t_game *game, t_img *img);
+void	ft_raycasting(t_game *game);
 
 #endif

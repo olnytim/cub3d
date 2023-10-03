@@ -12,7 +12,8 @@
 
 // file will contain each parse and init function
 
-#include "../hf/cub3d.h"
+#include "../include/cub3D.h"
+#include <cub3D.h>
 
 void	ft_print_info(t_game *game)
 {
@@ -29,6 +30,8 @@ void	ft_print_info(t_game *game)
 	ft_printf("wo is: %s\n", game->map->w_path);
 	ft_printf("fc is: %s\n", game->map->f_color);
 	ft_printf("cc is: %s\n", game->map->c_color);
+	ft_printf("pos_x: %d\n", game->player->pos_x);
+	ft_printf("pos_y: %d\n", game->player->pos_y);
 	ft_printf("ceiling color is: %d\n", game->ceiling_color);
 	ft_printf("floor color is: %d\n", game->floor_color);
 	while (i < game->map->map_size)

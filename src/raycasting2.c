@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hf/cub3d.h"
+#include "../include/cub3D.h"
+#include <cub3D.h>
 
 void	ft_render_walls(t_game *game, t_rays *rays, t_img *img)
 {
@@ -23,13 +24,13 @@ void	ft_render_walls(t_game *game, t_rays *rays, t_img *img)
 		img->draw_end = SCREEN_HEIGHT - 1;
 	if (rays->side == 1)
 		img->color = img->color / 2;
-	if (side == 0)
-		rays->wall_X = game->player->pos_y + rays->perp_wall_dist
+	if (rays->side == 0)
+		rays->wall_x = game->player->pos_y + rays->perp_wall_dist
 			* rays->ray_dir_y;
 	else
 		rays->wall_x = game->player->pos_x + rays->perp_wall_dist
 			* rays->ray_dir_x;
-	rays->wall_x -= floor(wall_x);
+	rays->wall_x -= floor(rays->wall_x);
 	rays->tex_x = (int)(rays->wall_x * (double)game->wall_t->width);
 	if (rays->side == 0 && rays->ray_dir_x > 0)
 		rays->tex_x = game->wall_t->width - rays->tex_x - 1;
@@ -83,20 +84,20 @@ void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int *x)
 	int	y;
 
 	rays->tex_height = (int)(SCREEN_HEIGHT / rays->perp_wall_dist);
-	img->drawstart = -rays->tex_height / 2 + SCREEN_HEIGHT / 2;
-	if (img->drawstart < 0)
-		img->drawstart = 0;
-	img->drawend = -rays->tex_height / 2 + SCREEN_HEIGHT / 2;
-	if (img->drawend < 0)
-		img->drawend = SCREEN_HEIGHT - 1;
-	y = img->drawstart;
-	while (y < img->drawend)
+	img->draw_start = -rays->tex_height / 2 + SCREEN_HEIGHT / 2;
+	if (img->draw_start < 0)
+		img->draw_start = 0;
+	img->draw_end = -rays->tex_height / 2 + SCREEN_HEIGHT / 2;
+	if (img->draw_end < 0)
+		img->draw_end = SCREEN_HEIGHT - 1;
+	y = img->draw_start;
+	while (y < img->draw_end)
 	{
-		rays->tex_y = (int)(((y - SCREEN_HEIGHT / 2 + rays->tex_height / 2) \
-			* game->wall_t->height) / rays->text_height);
+		rays->tex_y = (int)(((y - SCREEN_HEIGHT / 2 + rays->tex_height / 2)
+					* game->wall_t->height) / rays->tex_height);
 		img->color = game->wall_t->addr[rays->tex_y * game->wall_t->width
 			+ rays->tex_x];
-		game->img->addr[y * SCREEN_WIDTH + x] = img->color;
+		game->img->addr[y * SCREEN_WIDTH + *x] = img->color;
 		++y;
 	}
 }

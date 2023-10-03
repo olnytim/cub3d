@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hf/cub3d.h"
+#include "../include/cub3D.h"
+#include <cub3D.h>
 
 static int	ft_check_end(t_game *game, char *line)
 {
@@ -49,7 +50,7 @@ static int	ft_check_chars(t_game *game, char **line)
 		if ((*temp == 'N' || *temp == 'E' || *temp == 'W'
 				|| *temp == 'S') && flag == 0)
 		{
-			flag = 1;
+			++flag;
 			game->map->dir = *temp;
 		}
 		else if (*temp != '1' && *temp != '0' && *temp != ' ')
@@ -119,6 +120,8 @@ void	ft_map_parse(t_game *game, char *line)
 		if (*line == '\n' && ft_check_end(game, line))
 			break ;
 	}
+	if (!game->map->dir)
+		ft_exit("There is no place to start\n");
 	game->map->map[game->map->map_size] = NULL;
 	ft_check_fence(game, 0, 0);
 }

@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <vector>
 #include <iostream>
 
-// #include "hf/cub3d.h"
+// #include "include/cub3d.h"
 #include <mlx.h>
 // #include "quickcg.h"
 // using namespace QuickCG;

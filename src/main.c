@@ -10,20 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hf/cub3d.h"
+#include "../include/cub3D.h"
+#include <cub3D.h>
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	dst = img->addr + (y * img->line_length + x * (img->b_p_p / 8));
 	*(unsigned int *)dst = color;
 }
 
 int	main(int ac, char **av)
 {
 	t_game	*game;
-	t_img	img;
+//	t_img	img;
 
 	game = malloc(sizeof(t_game));
 	ft_parse(game, ac, av);
@@ -31,6 +32,7 @@ int	main(int ac, char **av)
 	// init mlx win
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, 500, 500, "Cub3D");
+	ft_raycasting(game);
 	// draw smth
 	// img.img = mlx_new_image(game->mlx, 500, 500);
 	// img.addr = mlx_get_data_addr(img.img,
@@ -39,9 +41,9 @@ int	main(int ac, char **av)
 	// ft_drawCharInCircle(&img, i + 50, j + 50, 100, 0x00FF0000);
 	// mlx_put_image_to_window(game->mlx, game->win, img.img, 0, 0);
 	// hooks
-	// mlx_hook(game->win, 17, 0, ft_endgame, game);
-	// mlx_hook(game->win, 2, 1L << 0, ft_hook, game);
-	// mlx_mouse_hook(game->win, ft_mouse_hook, game);
-	// mlx_loop(game->mlx);
+	 mlx_hook(game->win, 17, 0, ft_endgame, game);
+	 mlx_hook(game->win, 2, 1L << 0, ft_hook, game);
+	 mlx_mouse_hook(game->win, ft_mouse_hook, game);
+	 mlx_loop(game->mlx);
 	return (0);
 }
