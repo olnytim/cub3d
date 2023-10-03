@@ -93,7 +93,8 @@ static void	ft_add_lines(t_game *game, char *line)
 {
 	static int	i;
 
-	game->map->map[i] = line;
+	game->map->map[i] = ft_strdup(line);
+	free(line);
 	++i;
 }
 

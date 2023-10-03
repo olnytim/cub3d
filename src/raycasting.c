@@ -111,12 +111,12 @@ static void	ft_dda(t_game *game, t_rays *rays)
 			rays->map_y += rays->step_y;
 			rays->side = 1;
 		}
-		if (game->map->map)// here is the biggest problem in this code. There are no need in these condition, but without it program doesn't work.
-			// something wrong with this map. i don't understand. god bless it
-		{
-			rays->hit = 1;
-			break ;
-		}
+		// if (game->map->map)// here is the biggest problem in this code. There are no need in these condition, but without it program doesn't work.
+		// 	// something wrong with this map. i don't understand. god bless it
+		// {
+		// 	rays->hit = 1;
+		// 	break ;
+		// }
 		if (game->map->map[rays->map_x][rays->map_y])
 			rays->hit = 1;
 	}

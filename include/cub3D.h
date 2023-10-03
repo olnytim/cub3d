@@ -167,4 +167,7 @@ void	ft_walls_side(t_game *game, t_rays *rays);
 void	ft_fc_colors(t_game *game, t_img *img);
 void	ft_raycasting(t_game *game);
 
+/* utils */
+void	ft_free_matrix(char **str);
+
 #endif
