@@ -25,54 +25,53 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	map = ft_skip_spaces(map);
 	if (!*map || *map == '\n')
 		ft_exit("Input invalid path for orientation\n");
-	//It can all be one function
 	if (rem == 'N')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!tmp, "idk");
 		game->map->n_path = ft_strtrim(tmp, "\n");
 		free(tmp);
-		malloc_err(!game->map->n_path, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!game->map->n_path, "|$*malloc*$|. Thanks for attention");
 	}
 	else if (rem == 'S')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!tmp, "idk");
 		game->map->s_path = ft_strtrim(tmp, "\n");
 		free(tmp);
-		malloc_err(!game->map->s_path, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!game->map->s_path, "|$*malloc*$|. Thanks for attention");
 	}
 	else if (rem == 'E')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!tmp, "idk");
 		game->map->e_path = ft_strtrim(tmp, "\n");
 		free(tmp);
-		malloc_err(!game->map->e_path, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!game->map->e_path, "|$*malloc*$|. Thanks for attention");
 	}
 	else if (rem == 'W')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!tmp, "idk");
 		game->map->w_path = ft_strtrim(tmp, "\n");
 		free(tmp);
-		malloc_err(!game->map->w_path, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!game->map->w_path, "|$*malloc*$|. Thanks for attention");
 	}
 	else if (rem == 'C')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!tmp, "idk");
 		game->map->c_color = ft_strtrim(tmp, "\n");
 		free(tmp);
-		malloc_err(!game->map->c_color, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!game->map->c_color, "|$*malloc*$|. Thanks for attention");
 	}
 	else if (rem == 'F')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!tmp, "idk");
 		game->map->f_color = ft_strtrim(tmp, "\n");
 		free(tmp);
-		malloc_err(!game->map->f_color, "idk");		//TIMUUUUURRRRR!!!! Error!!!
+		malloc_err(!game->map->f_color, "|$*malloc*$|. Thanks for attention");
 	}
 	return (1);
 }
