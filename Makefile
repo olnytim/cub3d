@@ -20,7 +20,7 @@ MINILIBX_MAC = -lmlx -framework OpenGL -framework AppKit
 #
 SRC = $(addprefix $(PREF_SRC)/, raycasting.c raycasting2.c \
 	main.c check_utils.c check_map.c check_values.c check_colors.c \
-	hooks.c check.c exit.c utils.c)
+	hooks.c check.c exit.c)
 OBJ = $(patsubst $(PREF_SRC)/%.c, $(PREF_OBJ)/%.o, $(SRC))
 #
 # Mac implementation

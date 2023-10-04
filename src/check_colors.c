@@ -22,7 +22,7 @@ static void	ft_trim_spaces(char **arr)
 	while (arr[i])
 	{
 		tmp = ft_strtrim(arr[i], " ");
-		malloc_err(!tmp, "idk");	//Timur
+		malloc_err(!tmp, "tmp in trim_spaces");
 		free(arr[i]);
 		arr[i] = tmp;
 		++i;
@@ -75,7 +75,7 @@ void	ft_convert_colors(t_game *game)
 
 	f_color = ft_split(game->map->f_color, ',');
 	c_color = ft_split(game->map->c_color, ',');
-	malloc_err(!f_color || !c_color, "idk");		//Timur, don't forget about mall_err! And error name!!!
+	malloc_err(!f_color || !c_color, "f_color or c_color don't appear");
 	ft_trim_spaces(f_color);
 	ft_trim_spaces(c_color);
 	ceiling_color = malloc(sizeof(int) * 4);
@@ -92,6 +92,4 @@ void	ft_convert_colors(t_game *game)
 		| (floor_color[1] << 8) | floor_color[2];
 	free(ceiling_color);
 	free(floor_color);
-	// ft_free_matrix(c_color);
-	// ft_free_matrix(f_color);
 }

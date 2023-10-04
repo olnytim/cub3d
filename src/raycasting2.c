@@ -38,6 +38,33 @@ void	ft_render_walls(t_game *game, t_rays *rays, t_img *img)
 		rays->tex_x = game->wall_t->width - rays->tex_x - 1;
 }
 
+void	ft_dda(t_game *game, t_rays *rays)
+{
+	while (rays->hit == 0)
+	{
+		if (rays->side_dist_x < rays->side_dist_y)
+		{
+			rays->side_dist_x += rays->delta_dist_x;
+			rays->map_x += rays->step_x;
+			rays->side = 0;
+		}
+		else
+		{
+			rays->side_dist_y += rays->delta_dist_y;
+			rays->map_y += rays->step_y;
+			rays->side = 1;
+		}
+		if (game->map->map[rays->map_y][rays->map_x])
+			rays->hit = 1;
+	}
+	if (rays->side == 0)
+		rays->perp_wall_dist = (rays->side_dist_x
+				- rays->delta_dist_x);
+	else
+		rays->perp_wall_dist = (rays->side_dist_y
+				- rays->delta_dist_y);
+}
+
 void	ft_fc_colors(t_game *game, t_img *img)
 {
 	int	x;

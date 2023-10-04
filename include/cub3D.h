@@ -130,18 +130,11 @@ enum {
 // 	ESC = 53
 // } ;
 
-typedef struct {
-	int	red;
-	int	green;
-	int	blue;
-	int	white;
-	int	yellow;
-} ColorRGB;
-
 // list of functions
 /* exit functions */
 void	ft_exit(char *str);
 void	malloc_err(int condition, char *str);
+void	ft_img_check(t_img *img);
 int		ft_endgame(t_game *game);
 
 /* parse functions */
@@ -165,9 +158,7 @@ void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int *x);
 void	ft_render_walls(t_game *game, t_rays *rays, t_img *img);
 void	ft_walls_side(t_game *game, t_rays *rays);
 void	ft_fc_colors(t_game *game, t_img *img);
+void	ft_dda(t_game *game, t_rays *rays);
 void	ft_raycasting(t_game *game);
-
-/* utils */
-void	ft_free_matrix(char **str);
 
 #endif

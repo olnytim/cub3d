@@ -15,33 +15,29 @@
 
 static void	ft_player_init(t_game *game, t_player *player)
 {
-	if (game->map->dir == 'N')
+	if (game->map->dir == 'N' || game->map->dir == 'S')
 	{
 		player->dir_x = 0;
-		player->dir_y = -1;
-		player->plane_x = -0.66;
 		player->plane_y = 0;
-	}
-	else if (game->map->dir == 'S')
-	{
-		player->dir_x = 0;
 		player->dir_y = 1;
 		player->plane_x = 0.66;
-		player->plane_y = 0;
-	}
-	else if (game->map->dir == 'E')
-	{
-		player->dir_x = 1;
-		player->dir_y = 0;
-		player->plane_x = 0;
-		player->plane_y = -0.66;
+		if (game->map->dir == 'N')
+		{
+			player->dir_y = -1;
+			player->plane_x = -0.66;
+		}
 	}
 	else
 	{
-		player->dir_x = -1;
-		player->dir_y = 0;
+		layer->dir_y = 0;
 		player->plane_x = 0;
+		player->dir_x = -1;
 		player->plane_y = 0.66;
+		if (game->map->dir == 'E')
+		{
+			player->dir_x = 1;
+			player->plane_y = -0.66;
+		}
 	}
 }
 
@@ -95,70 +91,31 @@ static void	ft_step_calc(t_game *game, t_rays *rays)
 	}
 }
 
-static void	ft_dda(t_game *game, t_rays *rays)
+void	ft_sides_init(t_game *game, int i)
 {
-	while (rays->hit == 0)
-	{
-		if (rays->side_dist_x < rays->side_dist_y)
-		{
-			rays->side_dist_x += rays->delta_dist_x;
-			rays->map_x += rays->step_x;
-			rays->side = 0;
-		}
-		else
-		{
-			rays->side_dist_y += rays->delta_dist_y;
-			rays->map_y += rays->step_y;
-			rays->side = 1;
-		}
-		// if (game->map->map)// here is the biggest problem in this code. There are no need in these condition, but without it program doesn't work.
-		// 	// something wrong with this map. i don't understand. god bless it
-		// {
-		// 	rays->hit = 1;
-		// 	break ;
-		// }
-		if (game->map->map[rays->map_y][rays->map_x])
-			rays->hit = 1;
-	}
-	if (rays->side == 0)
-		rays->perp_wall_dist = (rays->side_dist_x
-				- rays->delta_dist_x);
-	else
-		rays->perp_wall_dist = (rays->side_dist_y
-				- rays->delta_dist_y);
-}
+	char	*img_path[4];
+	t_img	**img_pointers[4];
+	t_img	*img;
 
-void	ft_sides_init(t_game *game) // function to delete itself
-{
-	game->n = malloc(sizeof(t_img));
-	malloc_err(!game->n, "img");
-	game->n->img = mlx_xpm_file_to_image(game->mlx, game->map->n_path,
-			&game->n->width, &game->n->height);
-	game->n->addr = mlx_get_data_addr(game->n->img, &game->n->b_p_p, \
-			&game->n->line_length, &game->n->endian);
-	//
-	game->s = malloc(sizeof(t_img));
-	malloc_err(!game->s, "img");
-	game->s->img = mlx_xpm_file_to_image(game->mlx, game->map->s_path,
-			&game->s->width, &game->s->height);
-	game->s->addr = mlx_get_data_addr(game->s->img, &game->s->b_p_p, \
-			&game->s->line_length, &game->s->endian);
-	//
-	game->e = malloc(sizeof(t_img));
-	malloc_err(!game->e, "img");
-	game->e->img = mlx_xpm_file_to_image(game->mlx, game->map->e_path,
-			&game->e->width, &game->e->height);
-	game->e->addr = mlx_get_data_addr(game->e->img, &game->e->b_p_p, \
-			&game->e->line_length, &game->e->endian);
-	//
-	game->w = malloc(sizeof(t_img));
-	malloc_err(!game->w, "img");
-	game->w->img = mlx_xpm_file_to_image(game->mlx, game->map->w_path,
-			&game->w->width, &game->w->height);
-	game->w->addr = mlx_get_data_addr(game->w->img, &game->w->b_p_p, \
-			&game->w->line_length, &game->w->endian);
-	if (!game->w->img || !game->e->img || !game->w->img || !game->s->img)
-		ft_exit("img error\n");
+	img_path[0] = game->map->n_path;
+	img_path[1] = game->map->s_path;
+	img_path[2] = game->map->w_path;
+	img_path[3] = game->map->e_path;
+	img_pointers[0] = &game->n;
+	img_pointers[1] = &game->s;
+	img_pointers[2] = &game->w;
+	img_pointers[3] = &game->e;
+	while (++i < 4)
+	{
+		img = malloc(sizeof(t_img));
+		malloc_err(!img, "problem with creating img");
+		img->img = mlx_xpm_file_to_image(game->mlx, img_path[i],
+				&img->width, &img->height);
+		ft_img_check(img);
+		img->addr = mlx_get_data_addr(img->img, &img->b_p_p,
+				&img->line_length, &img->endian);
+		*img_pointers[i] = img;
+	}
 }
 
 void	ft_raycasting(t_game *game)
@@ -175,7 +132,7 @@ void	ft_raycasting(t_game *game)
 	ft_player_init(game, game->player);
 	game->rays = malloc(sizeof(t_rays));
 	malloc_err(!game->rays, "rays");
-	ft_sides_init(game);
+	ft_sides_init(game, -1);
 	while (++x < SCREEN_WIDTH)
 	{
 		ft_rays_init(game, game->rays, &x);

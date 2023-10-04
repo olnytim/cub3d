@@ -34,3 +34,12 @@ int	ft_endgame(t_game *game)
 	printf("Game Over!\n");
 	exit(0);
 }
+
+void	ft_img_check(t_img *img)
+{
+	if (!img->img)
+	{
+		free(img);
+		ft_exit("image not found\n");
+	}
+}
