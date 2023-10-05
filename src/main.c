@@ -68,6 +68,15 @@ static void	ft_sides_init(t_game *game, int i)
 	}
 }
 
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = game->img->addr + (y * game->img->line_length +
+		x * (game->img->b_p_p / 8));
+	*(unsigned int *)dst = color;
+}
+
 int	main(int ac, char **av)
 {
 	t_game	*game;

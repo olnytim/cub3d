@@ -52,11 +52,9 @@ void	ft_check_fence(t_game *game, int x, int y)
 		{
 			if (game->map->map[y][x] == game->map->dir)
 			{
-				game->player->pos_x = x;
-				game->player->pos_y = y;
+				game->player->pos_x = x + 0.5;
+				game->player->pos_y = y + 0.5;
 				game->map->map[y][x] = '0';
-				printf("player pos_x: %f\n", game->player->pos_x);
-				printf("player pos_y: %f\n", game->player->pos_y);
 			}
 			if (game->map->map[y][x] == '0')
 			{

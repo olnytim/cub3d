@@ -13,26 +13,6 @@
 #include "../include/cub3D.h"
 #include <cub3D.h>
 
-void	ft_render_walls(t_game *game, t_rays *rays, t_img *img)
-{
-	rays->line_height = (int)(SCREEN_HEIGHT / rays->perp_wall_dist);
-	img->draw_start = (-rays->line_height / 2 + SCREEN_HEIGHT / 2);
-	if (img->draw_start < 0)
-		img->draw_start = 0;
-	img->draw_end = (rays->line_height / 2 + SCREEN_HEIGHT / 2);
-	if (img->draw_end >= SCREEN_HEIGHT)
-		img->draw_end = SCREEN_HEIGHT - 1;
-	if (rays->side == 1)
-		img->color = img->color / 2;
-	if (rays->side == 0)
-		rays->wall_x = game->player->pos_y + rays->perp_wall_dist
-			* rays->ray_dir_y;
-	else
-		rays->wall_x = game->player->pos_x + rays->perp_wall_dist
-			* rays->ray_dir_x;
-	rays->wall_x -= floor(rays->wall_x);
-}
-
 void	ft_dda(t_game *game, t_rays *rays)
 {
 	while (rays->hit == 0)
@@ -58,6 +38,26 @@ void	ft_dda(t_game *game, t_rays *rays)
 	else
 		rays->perp_wall_dist = (rays->side_dist_y
 				- rays->delta_dist_y);
+}
+
+void	ft_render_walls(t_game *game, t_rays *rays, t_img *img)
+{
+	rays->line_height = (int)(SCREEN_HEIGHT / rays->perp_wall_dist);
+	img->draw_start = -rays->line_height / 2 + SCREEN_HEIGHT / 2;
+	if (img->draw_start < 0)
+		img->draw_start = 0;
+	img->draw_end = rays->line_height / 2 + SCREEN_HEIGHT / 2;
+	if (img->draw_end >= SCREEN_HEIGHT)
+		img->draw_end = SCREEN_HEIGHT - 1;
+	if (rays->side == 1)
+		img->color = img->color / 2;
+	if (rays->side == 0)
+		rays->wall_x = game->player->pos_y + rays->perp_wall_dist
+			* rays->ray_dir_y;
+	else
+		rays->wall_x = game->player->pos_x + rays->perp_wall_dist
+			* rays->ray_dir_x;
+	rays->wall_x -= floor(rays->wall_x);
 }
 
 void	ft_fc_colors(t_game *game, t_img *img)
@@ -107,22 +107,20 @@ void	ft_walls_side(t_game *game, t_rays *rays)
 
 void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int x)
 {
-	int	y;
+	// double	step;
+	// double	tex_pos;
 
-	rays->tex_height = (int)(SCREEN_HEIGHT / rays->perp_wall_dist);
-	img->draw_start = -rays->tex_height / 2 + SCREEN_HEIGHT / 2;
-	if (img->draw_start < 0)
-		img->draw_start = 0;
-	img->draw_end = rays->tex_height / 2 + SCREEN_HEIGHT / 2;
-	if (img->draw_end >= SCREEN_HEIGHT)
-		img->draw_end = SCREEN_HEIGHT - 1;
-	y = img->draw_start - 1;
-	while (++y < img->draw_end)
+	// step = 1.0 * TEX_HEIGHT / rays->line_height;
+	// tex_pos = (img->draw_start - SCREEN_HEIGHT / 2
+	// 	+ rays->line_height / 2) * step;
+	while (img->draw_start < img->draw_end)
 	{
-		rays->tex_y = (int)(((y - SCREEN_HEIGHT / 2 + rays->tex_height / 2)
-					* game->wall_t->height) / rays->tex_height);
+		rays->tex_y = (int)(((img->draw_start - SCREEN_HEIGHT / 2 + rays->line_height / 2)
+					* game->wall_t->height) / rays->line_height);
 		img->color = game->wall_t->addr[rays->tex_y * game->wall_t->width
 			+ rays->tex_x];
-		img->addr[y * SCREEN_WIDTH + x] = img->color;
+		img->addr[img->draw_start * SCREEN_WIDTH + x] = img->color;
+		printf("%d\n", img->color);
+		++img->draw_start;
 	}
 }

@@ -24,6 +24,8 @@
 // set the sizes of map and screen
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
 
 // define structs
 typedef struct s_map
@@ -154,7 +156,7 @@ int		ft_hook(int keycode, t_game *game);
 /* raycasting */
 void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int x);
 void	ft_render_walls(t_game *game, t_rays *rays, t_img *img);
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	ft_walls_side(t_game *game, t_rays *rays);
 void	ft_fc_colors(t_game *game, t_img *img);
 void	ft_dda(t_game *game, t_rays *rays);
