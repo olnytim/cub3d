@@ -32,8 +32,8 @@ void	ft_print_info(t_game *game)
 	ft_printf("fc is: %s\n", game->map->f_color);
 	ft_printf("cc is: %s\n", game->map->c_color);
 	ft_printf("player dir is: %c\n", game->map->dir);
-	ft_printf("player pos_x: %d\n", game->player->pos_x);
-	ft_printf("player pos_y: %d\n", game->player->pos_y);
+	printf("player pos_x: %f\n", game->player->pos_x);
+	printf("player pos_y: %f\n", game->player->pos_y);
 	ft_printf("ceiling color is: %d\n", game->ceiling_color);
 	ft_printf("floor color is: %d\n", game->floor_color);
 	while (i < game->map->map_size)

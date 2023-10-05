@@ -49,7 +49,7 @@ void	ft_dda(t_game *game, t_rays *rays)
 			rays->map_y += rays->step_y;
 			rays->side = 1;
 		}
-		if (game->map->map[rays->map_y][rays->map_x])
+		if (game->map->map[rays->map_y][rays->map_x] == '1')
 			rays->hit = 1;
 	}
 	if (rays->side == 0)
@@ -117,11 +117,6 @@ void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int x)
 	if (img->draw_end >= SCREEN_HEIGHT)
 		img->draw_end = SCREEN_HEIGHT - 1;
 	y = img->draw_start - 1;
-	printf("y is: %d\n", y);
-	printf("rays->perp_wall_dist is: %f\n", rays->perp_wall_dist);
-	printf("img->draw_start is: %d\n", img->draw_start);
-	printf("img->draw_end is: %d\n", img->draw_end);
-	printf("rays->tex_height is: %d\n", rays->tex_height);
 	while (++y < img->draw_end)
 	{
 		rays->tex_y = (int)(((y - SCREEN_HEIGHT / 2 + rays->tex_height / 2)
@@ -129,6 +124,5 @@ void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int x)
 		img->color = game->wall_t->addr[rays->tex_y * game->wall_t->width
 			+ rays->tex_x];
 		img->addr[y * SCREEN_WIDTH + x] = img->color;
-		printf("%d %d: HI THERE\n", x, y);
 	}
 }

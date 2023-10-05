@@ -76,6 +76,7 @@ void	ft_raycasting(t_game *game)
 	ft_fc_colors(game, game->img);
 	game->rays = malloc(sizeof(t_rays));
 	malloc_err(!game->rays, "rays");
+	// while (++x < 1)
 	while (++x < SCREEN_WIDTH)
 	{
 		ft_rays_init(game, game->rays, x);
