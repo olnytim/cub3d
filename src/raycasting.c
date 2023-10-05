@@ -84,6 +84,7 @@ void	ft_raycasting(t_game *game)
 		ft_render_walls(game, game->rays, game->img);
 		ft_walls_side(game, game->rays);
 		ft_tex_rendering(game, game->rays, game->img, x);
+		// printf("%d: HI THERE\n", x);
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	mlx_destroy_image(game->mlx, game->img->img);

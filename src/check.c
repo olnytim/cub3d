@@ -18,6 +18,7 @@
 void	ft_print_info(t_game *game)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	ft_printf("fd is: %d\n", game->map->fd);
@@ -30,13 +31,21 @@ void	ft_print_info(t_game *game)
 	ft_printf("wo is: %s\n", game->map->w_path);
 	ft_printf("fc is: %s\n", game->map->f_color);
 	ft_printf("cc is: %s\n", game->map->c_color);
-	ft_printf("pos_x: %d\n", game->player->pos_x);
-	ft_printf("pos_y: %d\n", game->player->pos_y);
+	ft_printf("player dir is: %c\n", game->map->dir);
+	ft_printf("player pos_x: %d\n", game->player->pos_x);
+	ft_printf("player pos_y: %d\n", game->player->pos_y);
 	ft_printf("ceiling color is: %d\n", game->ceiling_color);
 	ft_printf("floor color is: %d\n", game->floor_color);
 	while (i < game->map->map_size)
 	{
-		ft_printf("map[%d] is: %s\n", i, game->map->map[i]);
+		j = 0;
+		ft_printf("map[%d] is: ", i);
+		while (j < (int)ft_strlen(game->map->map[i]))
+		{
+			ft_printf("%c",game->map->map[i][j]);
+			++j;
+		}
+		printf("\n");
 		++i;
 	}
 }
