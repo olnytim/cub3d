@@ -67,7 +67,7 @@ $(PREF_OBJ)/%.o: $(PREF_SRC)/%.c Makefile $(HF_PATH)/cub3D.h
 	@$(CC) $(CFLAGS) $(HEADER) $(FSANITIZE) $(MLX_HEADER) $(MINILIBX) -c $< -o $@
 #
 add:
-	make -C $(LIBFT_PATH)
+	@make -C $(LIBFT_PATH)
 	@if [[ (! -e $(MINILIBXA)) || (! -e $(LIBFTA)) ]]; then \
 		make -C $(MINILIBX_PATH) ; \
 		echo "Library libmlx.a created successfully!" ; \

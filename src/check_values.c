@@ -28,7 +28,7 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	if (rem == 'N')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");
+		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
 		game->map->n_path = ft_strtrim(tmp, "\n");
 		free(tmp);
 		malloc_err(!game->map->n_path, "|$*malloc*$|. Thanks for attention");
@@ -36,7 +36,7 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	else if (rem == 'S')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");
+		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
 		game->map->s_path = ft_strtrim(tmp, "\n");
 		free(tmp);
 		malloc_err(!game->map->s_path, "|$*malloc*$|. Thanks for attention");
@@ -44,7 +44,7 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	else if (rem == 'E')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");
+		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
 		game->map->e_path = ft_strtrim(tmp, "\n");
 		free(tmp);
 		malloc_err(!game->map->e_path, "|$*malloc*$|. Thanks for attention");
@@ -52,7 +52,7 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	else if (rem == 'W')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");
+		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
 		game->map->w_path = ft_strtrim(tmp, "\n");
 		free(tmp);
 		malloc_err(!game->map->w_path, "|$*malloc*$|. Thanks for attention");
@@ -60,7 +60,7 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	else if (rem == 'C')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");
+		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
 		game->map->c_color = ft_strtrim(tmp, "\n");
 		free(tmp);
 		malloc_err(!game->map->c_color, "|$*malloc*$|. Thanks for attention");
@@ -68,7 +68,7 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	else if (rem == 'F')
 	{
 		tmp = ft_strdup(map);
-		malloc_err(!tmp, "idk");
+		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
 		game->map->f_color = ft_strtrim(tmp, "\n");
 		free(tmp);
 		malloc_err(!game->map->f_color, "|$*malloc*$|. Thanks for attention");

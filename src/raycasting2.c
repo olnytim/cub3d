@@ -31,11 +31,6 @@ void	ft_render_walls(t_game *game, t_rays *rays, t_img *img)
 		rays->wall_x = game->player->pos_x + rays->perp_wall_dist
 			* rays->ray_dir_x;
 	rays->wall_x -= floor(rays->wall_x);
-	rays->tex_x = (int)(rays->wall_x * (double)game->wall_t->width);
-	if (rays->side == 0 && rays->ray_dir_x > 0)
-		rays->tex_x = game->wall_t->width - rays->tex_x - 1;
-	if (rays->side == 1 && rays->ray_dir_y < 0)
-		rays->tex_x = game->wall_t->width - rays->tex_x - 1;
 }
 
 void	ft_dda(t_game *game, t_rays *rays)
@@ -75,7 +70,7 @@ void	ft_fc_colors(t_game *game, t_img *img)
 	{
 		x = 0;
 		while (x < SCREEN_WIDTH)
-			img->addr[y * SCREEN_HEIGHT + x++] = game->ceiling_color;
+			img->addr[y * SCREEN_WIDTH + x++] = game->ceiling_color;
 		++y;
 	}
 	y = SCREEN_HEIGHT / 2;
@@ -83,7 +78,7 @@ void	ft_fc_colors(t_game *game, t_img *img)
 	{
 		x = 0;
 		while (x < SCREEN_WIDTH)
-			img->addr[y * SCREEN_HEIGHT + x++] = game->floor_color;
+			img->addr[y * SCREEN_WIDTH + x++] = game->floor_color;
 		++y;
 	}
 }
@@ -104,9 +99,13 @@ void	ft_walls_side(t_game *game, t_rays *rays)
 		else
 			game->wall_t = game->s;
 	}
+	rays->tex_x = (int)(rays->wall_x * (double)game->wall_t->width);
+	if ((rays->side == 0 && rays->ray_dir_x > 0)
+		|| (rays->side == 1 && rays->ray_dir_y < 0))
+		rays->tex_x = game->wall_t->width - rays->tex_x - 1;
 }
 
-void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int *x)
+void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int x)
 {
 	int	y;
 
@@ -114,17 +113,16 @@ void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int *x)
 	img->draw_start = -rays->tex_height / 2 + SCREEN_HEIGHT / 2;
 	if (img->draw_start < 0)
 		img->draw_start = 0;
-	img->draw_end = -rays->tex_height / 2 + SCREEN_HEIGHT / 2;
-	if (img->draw_end < 0)
+	img->draw_end = rays->tex_height / 2 + SCREEN_HEIGHT / 2;
+	if (img->draw_end >= SCREEN_HEIGHT)
 		img->draw_end = SCREEN_HEIGHT - 1;
-	y = img->draw_start;
-	while (y < img->draw_end)
+	y = img->draw_start - 1;
+	while (++y < img->draw_end)
 	{
 		rays->tex_y = (int)(((y - SCREEN_HEIGHT / 2 + rays->tex_height / 2)
 					* game->wall_t->height) / rays->tex_height);
 		img->color = game->wall_t->addr[rays->tex_y * game->wall_t->width
 			+ rays->tex_x];
-		game->img->addr[y * SCREEN_WIDTH + *x] = img->color;
-		++y;
+		img->addr[y * SCREEN_WIDTH + x] = img->color;
 	}
 }

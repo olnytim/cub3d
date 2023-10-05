@@ -13,37 +13,75 @@
 #include "../include/cub3D.h"
 #include <cub3D.h>
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+static void	ft_player_init(t_game *game, t_player *player)
 {
-	char	*dst;
+	if (game->map->dir == 'N' || game->map->dir == 'S')
+	{
+		player->dir_x = 0;
+		player->plane_y = 0;
+		player->dir_y = 1;
+		player->plane_x = 0.66;
+		if (game->map->dir == 'N')
+		{
+			player->dir_y = -1;
+			player->plane_x = -0.66;
+		}
+	}
+	else
+	{
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->dir_x = -1;
+		player->plane_y = 0.66;
+		if (game->map->dir == 'E')
+		{
+			player->dir_x = 1;
+			player->plane_y = -0.66;
+		}
+	}
+}
 
-	dst = img->addr + (y * img->line_length + x * (img->b_p_p / 8));
-	*(unsigned int *)dst = color;
+static void	ft_sides_init(t_game *game, int i)
+{
+	char	*img_path[4];
+	t_img	**img_pointers[4];
+	t_img	*img;
+
+	img_path[0] = game->map->n_path;
+	img_path[1] = game->map->s_path;
+	img_path[2] = game->map->w_path;
+	img_path[3] = game->map->e_path;
+	img_pointers[0] = &game->n;
+	img_pointers[1] = &game->s;
+	img_pointers[2] = &game->w;
+	img_pointers[3] = &game->e;
+	while (++i < 4)
+	{
+		img = malloc(sizeof(t_img));
+		malloc_err(!img, "problem with creating img");
+		img->img = mlx_xpm_file_to_image(game->mlx, img_path[i],
+				&img->width, &img->height);
+		ft_img_check(img);
+		img->addr = mlx_get_data_addr(img->img, &img->b_p_p,
+				&img->line_length, &img->endian);
+		*img_pointers[i] = img;
+	}
 }
 
 int	main(int ac, char **av)
 {
 	t_game	*game;
-//	t_img	img;
 
 	game = malloc(sizeof(t_game));
 	ft_parse(game, ac, av);
-	// system("leaks cub3D");
-	// init mlx win
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, 500, 500, "Cub3D");
+	game->win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
+	ft_player_init(game, game->player);
+	ft_sides_init(game, -1);
 	ft_raycasting(game);
-	// draw smth
-	// img.img = mlx_new_image(game->mlx, 500, 500);
-	// img.addr = mlx_get_data_addr(img.img,
-	// 		&img.bits_per_pixel, &img.line_length, &img.endian);
-	// ft_square(img, i, j);
-	// ft_drawCharInCircle(&img, i + 50, j + 50, 100, 0x00FF0000);
-	// mlx_put_image_to_window(game->mlx, game->win, img.img, 0, 0);
-	// hooks
-	 mlx_hook(game->win, 17, 0, ft_endgame, game);
-	 mlx_hook(game->win, 2, 1L << 0, ft_hook, game);
-	 mlx_mouse_hook(game->win, ft_mouse_hook, game);
-	 mlx_loop(game->mlx);
+	mlx_hook(game->win, 17, 0, ft_endgame, game);
+	mlx_hook(game->win, 2, 1L << 0, ft_hook, game);
+	mlx_mouse_hook(game->win, ft_mouse_hook, game);
+	mlx_loop(game->mlx);
 	return (0);
 }
