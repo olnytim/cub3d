@@ -1,17 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                    *._           _.*   @   */
-/*   raycasting.c                                       |\  \\_//  /|     #   */
-/*                                                      \/         \/     $   */
-/*   By: olnytim <yearagotomorrow@gmail.com>           _|_    V  V  |_    %   */
-/*                                                  *=.    =  _*  =   .=* ^   */
-/*   Created: 2023/10/02 02:38:40 by olnytim           \= ___________=/   &   */
-/*   Updated: 2023/10/02 02:38:42 by olnytim                /     \       *   */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/02 02:38:40 by olnytim           #+#    #+#             */
+/*   Updated: 2023/10/16 16:13:52 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include <cub3D.h>
+
+static void	ft_fc_colors(t_game *game, t_img *img)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	(void)game;
+	printf("screen-Height: %d\n", SCREEN_HEIGHT);
+	printf("screen-width: %d\n", SCREEN_WIDTH);
+	while (y < SCREEN_HEIGHT / 2)
+	{
+		x = 0;
+		while (x < SCREEN_WIDTH)
+			img->addr[y * SCREEN_WIDTH + x++] = game->ceiling_color;
+		++y;
+	}
+	y = SCREEN_HEIGHT / 2;
+	while (y < SCREEN_HEIGHT)
+	{
+		x = 0;
+		while (x < SCREEN_WIDTH)
+			img->addr[y * SCREEN_WIDTH + x++] = game->floor_color;
+		++y;
+	}
+}
 
 static void	ft_rays_init(t_game *game, t_rays *rays, int x)
 {
@@ -71,7 +97,7 @@ void	ft_raycasting(t_game *game)
 	game->img = malloc(sizeof(t_img));
 	malloc_err(!game->img, "img");
 	game->img->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	game->img->addr = mlx_get_data_addr(game->img->img, &game->img->b_p_p, \
+	game->img->addr = (int *)mlx_get_data_addr(game->img->img, &game->img->b_p_p,
 			&game->img->line_length, &game->img->endian);
 	ft_fc_colors(game, game->img);
 	game->rays = malloc(sizeof(t_rays));

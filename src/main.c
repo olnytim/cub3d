@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:12:27 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/19 16:13:58 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:15:02 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	ft_sides_init(t_game *game, int i)
 		img->img = mlx_xpm_file_to_image(game->mlx, img_path[i],
 				&img->width, &img->height);
 		ft_img_check(img);
-		img->addr = mlx_get_data_addr(img->img, &img->b_p_p,
+		img->addr = (int *)mlx_get_data_addr(img->img, &img->b_p_p,
 				&img->line_length, &img->endian);
 		*img_pointers[i] = img;
 	}
@@ -70,7 +70,7 @@ static void	ft_sides_init(t_game *game, int i)
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
-	char	*dst;
+	int	*dst;
 
 	dst = game->img->addr + (y * game->img->line_length +
 		x * (game->img->b_p_p / 8));

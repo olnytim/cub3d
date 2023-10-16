@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                    *._           _.*   @   */
-/*   raycasting2.c                                      |\  \\_//  /|     #   */
-/*                                                      \/         \/     $   */
-/*   By: olnytim <yearagotomorrow@gmail.com>           _|_    V  V  |_    %   */
-/*                                                  *=.    =  _*  =   .=* ^   */
-/*   Created: 2023/10/02 15:21:10 by olnytim           \= ___________=/   &   */
-/*   Updated: 2023/10/02 15:21:11 by olnytim                /     \       *   */
+/*                                                        :::      ::::::::   */
+/*   raycasting2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/02 15:21:10 by olnytim           #+#    #+#             */
+/*   Updated: 2023/10/16 15:51:50 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,6 @@ void	ft_render_walls(t_game *game, t_rays *rays, t_img *img)
 	rays->wall_x -= floor(rays->wall_x);
 }
 
-void	ft_fc_colors(t_game *game, t_img *img)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < SCREEN_HEIGHT / 2)
-	{
-		x = 0;
-		while (x < SCREEN_WIDTH)
-			img->addr[y * SCREEN_WIDTH + x++] = game->ceiling_color;
-		++y;
-	}
-	y = SCREEN_HEIGHT / 2;
-	while (y < SCREEN_HEIGHT)
-	{
-		x = 0;
-		while (x < SCREEN_WIDTH)
-			img->addr[y * SCREEN_WIDTH + x++] = game->floor_color;
-		++y;
-	}
-}
-
 void	ft_walls_side(t_game *game, t_rays *rays)
 {
 	if (rays->side == 0)
@@ -107,20 +84,22 @@ void	ft_walls_side(t_game *game, t_rays *rays)
 
 void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int x)
 {
-	// double	step;
-	// double	tex_pos;
+	double	texPos;
+	double	step;
 
-	// step = 1.0 * TEX_HEIGHT / rays->line_height;
-	// tex_pos = (img->draw_start - SCREEN_HEIGHT / 2
-	// 	+ rays->line_height / 2) * step;
+	step = 1.0 * game->wall_t->height / rays->line_height;
+	texPos = (img->draw_start - SCREEN_HEIGHT / 2 + rays->line_height / 2)
+		* step;
 	while (img->draw_start < img->draw_end)
 	{
-		rays->tex_y = (int)(((img->draw_start - SCREEN_HEIGHT / 2 + rays->line_height / 2)
-					* game->wall_t->height) / rays->line_height);
-		img->color = game->wall_t->addr[rays->tex_y * game->wall_t->width
+		rays->tex_y = (int)texPos & (game->wall_t->height - 1);
+		texPos += step;
+		img->color = game->wall_t->addr[rays->tex_y * game->wall_t->height
 			+ rays->tex_x];
+		if (rays->side == 1)
+			img->color = (img->color >> 1) & 8355711;
 		img->addr[img->draw_start * SCREEN_WIDTH + x] = img->color;
-		printf("%d\n", img->color);
+		// printf("%d\n", img->color);
 		++img->draw_start;
 	}
 }

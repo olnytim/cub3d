@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:12:04 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/19 16:33:59 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:12:42 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_rays
 typedef struct s_img
 {
 	void	*img;
-	char	*addr;
+	int		*addr;
 	int		b_p_p;
 	int		line_length;
 	int		endian;
@@ -114,21 +114,21 @@ typedef struct s_game
 }	t_game;
 
 // linux keys is the same as ascii?
-enum {
-	W = 119,
-	S = 115,
-	D = 100,
-	A = 97,
-	ESC = 65307
-} ;
-
 // enum {
-// 	W = 13,
-// 	S = 1,
-// 	D = 2,
-// 	A = 0,
-// 	ESC = 53
+// 	W = 119,
+// 	S = 115,
+// 	D = 100,
+// 	A = 97,
+// 	ESC = 65307
 // } ;
+
+enum {
+	W = 13,
+	S = 1,
+	D = 2,
+	A = 0,
+	ESC = 53
+} ;
 
 // list of functions
 /* exit functions */
@@ -158,7 +158,6 @@ void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int x);
 void	ft_render_walls(t_game *game, t_rays *rays, t_img *img);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	ft_walls_side(t_game *game, t_rays *rays);
-void	ft_fc_colors(t_game *game, t_img *img);
 void	ft_dda(t_game *game, t_rays *rays);
 void	ft_raycasting(t_game *game);
 
