@@ -16,12 +16,24 @@
 int	ft_hook(int keycode, t_game *game)
 {
 	printf("keycode: %d\n", keycode);
+	printf("\ndir x: %f\ndir y: %f\npos x:%f\npos y: %f\nplane x: %f\nplane y: %f\n", game->player->dir_x, game->player->dir_y,
+		game->player->pos_x, game->player->pos_y, game->player->plane_x, game->player->plane_y);
 	if (keycode == ESC)
 		ft_endgame(game);
-	// if (keycode == W)
-	// 	;
-	// if (keycode == S)
-	// 	;
+	if (keycode == W)
+	{
+		game->rays->map_y += 1;			//position
+		// game->player->dir_y -= 1;		//direction napravleniye
+		if (game->player->plane_x != -0.66)	//vektor
+			game->player->plane_x = -0.66;
+	}
+	if (keycode == S)
+	{
+		game->rays->map_y -= 1;
+		// game->player->dir_y += 1;
+		if (game->player->plane_x != 0.66)
+			game->player->plane_x = 0.66;
+	}
 	// if (keycode == D)
 	// 	;
 	// if (keycode == A)
