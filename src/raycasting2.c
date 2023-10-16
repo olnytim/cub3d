@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:21:10 by olnytim           #+#    #+#             */
-/*   Updated: 2023/10/16 15:51:50 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:49:24 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,22 +84,21 @@ void	ft_walls_side(t_game *game, t_rays *rays)
 
 void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int x)
 {
-	double	texPos;
+	double	tex_pos;
 	double	step;
 
 	step = 1.0 * game->wall_t->height / rays->line_height;
-	texPos = (img->draw_start - SCREEN_HEIGHT / 2 + rays->line_height / 2)
+	tex_pos = (img->draw_start - SCREEN_HEIGHT / 2 + rays->line_height / 2)
 		* step;
 	while (img->draw_start < img->draw_end)
 	{
-		rays->tex_y = (int)texPos & (game->wall_t->height - 1);
-		texPos += step;
+		rays->tex_y = (int)tex_pos & (game->wall_t->height - 1);
+		tex_pos += step;
 		img->color = game->wall_t->addr[rays->tex_y * game->wall_t->height
 			+ rays->tex_x];
 		if (rays->side == 1)
 			img->color = (img->color >> 1) & 8355711;
 		img->addr[img->draw_start * SCREEN_WIDTH + x] = img->color;
-		// printf("%d\n", img->color);
 		++img->draw_start;
 	}
 }

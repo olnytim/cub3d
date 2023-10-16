@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 20:12:27 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/10/16 16:15:02 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:48:19 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
 	int	*dst;
 
-	dst = game->img->addr + (y * game->img->line_length +
-		x * (game->img->b_p_p / 8));
+	dst = game->img->addr + (y * game->img->line_length
+			+ x * (game->img->b_p_p / 8));
 	*(unsigned int *)dst = color;
 }
 

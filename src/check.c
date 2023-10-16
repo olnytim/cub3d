@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 02:13:57 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/09/19 16:41:39 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:50:08 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_print_info(t_game *game)
 		ft_printf("map[%d] is: ", i);
 		while (j < (int)ft_strlen(game->map->map[i]))
 		{
-			ft_printf("%c",game->map->map[i][j]);
+			ft_printf("%c", game->map->map[i][j]);
 			++j;
 		}
 		printf("\n");

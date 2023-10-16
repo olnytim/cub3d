@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 02:38:40 by olnytim           #+#    #+#             */
-/*   Updated: 2023/10/16 16:13:52 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:48:49 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ void	ft_raycasting(t_game *game)
 	game->img = malloc(sizeof(t_img));
 	malloc_err(!game->img, "img");
 	game->img->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	game->img->addr = (int *)mlx_get_data_addr(game->img->img, &game->img->b_p_p,
-			&game->img->line_length, &game->img->endian);
+	game->img->addr = (int *)mlx_get_data_addr(game->img->img,
+			&game->img->b_p_p, &game->img->line_length, &game->img->endian);
 	ft_fc_colors(game, game->img);
 	game->rays = malloc(sizeof(t_rays));
 	malloc_err(!game->rays, "rays");
