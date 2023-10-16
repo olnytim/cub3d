@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../../include/cub3D.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -24,7 +25,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = ft_strlen(s);
 	substring = (char *)malloc((len + 1) * sizeof(char));
 	if (!substring)
-		return (NULL);
+		malloc_err(!substring, "|$*malloc*$|. Thanks for attention");
 	ft_strlcpy(substring, s + start, len + 1);
 	return (substring);
 }

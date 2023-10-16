@@ -13,10 +13,29 @@
 #include "../include/cub3D.h"
 #include <cub3D.h>
 
-static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
+static void	ft_init_help(t_game *game, char *map, char rem)
 {
 	char	*tmp;
 
+	tmp = ft_strdup(map);
+	malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
+	if (rem == 'N')
+		game->map->n_path = ft_strtrim(tmp, "\n");
+	else if (rem == 'S')
+		game->map->s_path = ft_strtrim(tmp, "\n");
+	else if (rem == 'E')
+		game->map->e_path = ft_strtrim(tmp, "\n");
+	else if (rem == 'W')
+		game->map->w_path = ft_strtrim(tmp, "\n");
+	else if (rem == 'F')
+		game->map->f_color = ft_strtrim(tmp, "\n");
+	else if (rem == 'C')
+		game->map->c_color = ft_strtrim(tmp, "\n");
+	free(tmp);
+}
+
+static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
+{
 	while (*line != rem && *line)
 		++line;
 	if (!*line)
@@ -25,54 +44,7 @@ static int	ft_init_dirs(t_game *game, char *map, char *line, char rem)
 	map = ft_skip_spaces(map);
 	if (!*map || *map == '\n')
 		ft_exit("Input invalid path for orientation\n");
-	if (rem == 'N')
-	{
-		tmp = ft_strdup(map);
-		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
-		game->map->n_path = ft_strtrim(tmp, "\n");
-		free(tmp);
-		malloc_err(!game->map->n_path, "|$*malloc*$|. Thanks for attention");
-	}
-	else if (rem == 'S')
-	{
-		tmp = ft_strdup(map);
-		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
-		game->map->s_path = ft_strtrim(tmp, "\n");
-		free(tmp);
-		malloc_err(!game->map->s_path, "|$*malloc*$|. Thanks for attention");
-	}
-	else if (rem == 'E')
-	{
-		tmp = ft_strdup(map);
-		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
-		game->map->e_path = ft_strtrim(tmp, "\n");
-		free(tmp);
-		malloc_err(!game->map->e_path, "|$*malloc*$|. Thanks for attention");
-	}
-	else if (rem == 'W')
-	{
-		tmp = ft_strdup(map);
-		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
-		game->map->w_path = ft_strtrim(tmp, "\n");
-		free(tmp);
-		malloc_err(!game->map->w_path, "|$*malloc*$|. Thanks for attention");
-	}
-	else if (rem == 'C')
-	{
-		tmp = ft_strdup(map);
-		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
-		game->map->c_color = ft_strtrim(tmp, "\n");
-		free(tmp);
-		malloc_err(!game->map->c_color, "|$*malloc*$|. Thanks for attention");
-	}
-	else if (rem == 'F')
-	{
-		tmp = ft_strdup(map);
-		malloc_err(!tmp, "|$*malloc*$|. Thanks for attention");
-		game->map->f_color = ft_strtrim(tmp, "\n");
-		free(tmp);
-		malloc_err(!game->map->f_color, "|$*malloc*$|. Thanks for attention");
-	}
+	ft_init_help(game, map, rem);
 	return (1);
 }
 
