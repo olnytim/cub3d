@@ -6,7 +6,7 @@
 /*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 02:37:22 by olnytim           #+#    #+#             */
-/*   Updated: 2023/10/16 15:37:24 by tgalyaut         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:03:45 by tgalyaut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,21 @@ int	ft_hook(int keycode, t_game *game)
 		ft_endgame(game);
 	if (keycode == W)
 	{
-		game->rays->map_y += 1;			//position
+		// game->rays->map_y += 1;			//position
+		// game->rays->step_y += 1;
+		game->player->pos_y += 1;			//position
 		// game->player->dir_y -= 1;		//direction napravleniye
-		if (game->player->plane_x != -0.66)	//vektor
-			game->player->plane_x = -0.66;
+		// if (game->player->plane_x != -0.66)	//vektor
+		// 	game->player->plane_x = -0.66;
 	}
 	if (keycode == S)
 	{
-		game->rays->map_y -= 1;
+		// game->rays->map_y -= 1;
+		// game->rays->step_y -= 1;
+		game->player->pos_y -= 1;			//position
 		// game->player->dir_y += 1;
-		if (game->player->plane_x != 0.66)
-			game->player->plane_x = 0.66;
+		// if (game->player->plane_x != 0.66)
+		// 	game->player->plane_x = 0.66;
 	}
 	// if (keycode == D)
 	// 	;
