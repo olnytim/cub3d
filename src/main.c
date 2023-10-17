@@ -24,7 +24,7 @@ static void	ft_player_init(t_game *game, t_player *player)
 		if (game->map->dir == 'N')
 		{
 			player->dir_y = -1;
-			player->plane_x = -0.66;
+			player->plane_x = 0.66;
 		}
 	}
 	else

@@ -120,6 +120,10 @@ typedef struct s_game
 // 	D = 100,
 // 	A = 97,
 // 	ESC = 65307
+	// LEFT = 123,
+	// RIGHT = 124,
+	// UP = 125,
+	// DOWN = 126
 // } ;
 
 enum {
@@ -127,7 +131,11 @@ enum {
 	S = 1,
 	D = 2,
 	A = 0,
-	ESC = 53
+	ESC = 53,
+	LEFT = 123,
+	RIGHT = 124,
+	UP = 125,
+	DOWN = 126
 } ;
 
 // list of functions
