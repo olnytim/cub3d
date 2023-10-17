@@ -54,6 +54,8 @@ typedef struct s_player
 	double	pos_y;
 	double	plane_x;
 	double	plane_y;
+	double	move_speed;
+	double	rot_speed;
 }	t_player;
 
 typedef struct s_rays

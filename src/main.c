@@ -20,7 +20,7 @@ static void	ft_player_init(t_game *game, t_player *player)
 		player->dir_x = 0;
 		player->plane_y = 0;
 		player->dir_y = 1;
-		player->plane_x = 0.66;
+		player->plane_x = -0.66;
 		if (game->map->dir == 'N')
 		{
 			player->dir_y = -1;
