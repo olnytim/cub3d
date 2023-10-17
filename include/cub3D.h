@@ -14,8 +14,9 @@
 # define CUB3D_H
 
 // libs
-# include <mlx.h>
+// # include <mlx.h>
 # include "../libft/libft.h"
+# include "../minilibx-mac/mlx.h"
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -158,7 +159,7 @@ void	ft_convert_colors(t_game *game);
 int		ft_check_path_color(char *line);
 
 /* hooks */
-int		ft_mouse_hook(int button, int x, int y, t_game *game);
+int		ft_mouse_hook(int button, t_game *game);
 int		ft_hook(int keycode, t_game *game);
 
 /* raycasting */
