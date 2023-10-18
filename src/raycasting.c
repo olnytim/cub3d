@@ -102,8 +102,6 @@ void	ft_raycasting(t_game *game)
 	game->img->addr = (int *)mlx_get_data_addr(game->img->img,
 			&game->img->b_p_p, &game->img->line_length, &game->img->endian);
 	ft_fc_colors(game, game->img);
-	game->rays = malloc(sizeof(t_rays));
-	malloc_err(!game->rays, "rays");
 	while (++x < SCREEN_WIDTH)
 	{
 		ft_rays_init(game, game->rays, x);

@@ -117,29 +117,29 @@ typedef struct s_game
 }	t_game;
 
 // linux keys is the same as ascii?
-// enum {
-// 	W = 119,
-// 	S = 115,
-// 	D = 100,
-// 	A = 97,
-// 	ESC = 65307
-	// LEFT = 123,
-	// RIGHT = 124,
-	// UP = 125,
-	// DOWN = 126
-// } ;
-
 enum {
-	W = 13,
-	S = 1,
-	D = 2,
-	A = 0,
-	ESC = 53,
-	LEFT = 123,
-	RIGHT = 124,
-	UP = 125,
-	DOWN = 126
+	W = 119,
+	S = 115,
+	D = 100,
+	A = 97,
+	ESC = 65307,
+	LEFT = 65361,
+	RIGHT = 65363,
+	UP = 65362,
+	DOWN = 65364
 } ;
+
+// enum {
+// 	W = 13,
+// 	S = 1,
+// 	D = 2,
+// 	A = 0,
+// 	ESC = 53,
+// 	LEFT = 123,
+// 	RIGHT = 124,
+// 	UP = 125,
+// 	DOWN = 126
+// } ;
 
 // list of functions
 /* exit functions */

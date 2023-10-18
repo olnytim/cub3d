@@ -46,6 +46,17 @@ void	ft_camera_move(int keycode, t_game *game)
 	}
 }
 
+// static void	ft_move(t_game *game, int case)
+// {
+// 	if (game->map->map[(int)game->player->pos_y][(int)(game->player->pos_x
+// 			+ game->player->dir_x * game->player->move_speed)] == '0')
+// 		game->player->pos_x += game->player->dir_x * game->player->move_speed;
+// 	if (game->map->map[(int)(game->player->pos_y + game->player->dir_y
+// 			* game->player->move_speed)][(int)game->player->pos_x] == '0')
+// 		game->player->pos_y += game->player->dir_y * game->player->move_speed;
+// 	ft_raycasting(game);
+// }
+
 int	ft_hook(int keycode, t_game *game)
 {
 	printf("keycode: %d\n", keycode);
@@ -53,7 +64,7 @@ int	ft_hook(int keycode, t_game *game)
 		game->player->pos_x, game->player->pos_y, game->player->plane_x, game->player->plane_y);
 	if (keycode == ESC)
 		ft_endgame(game);
-	if (keycode == W)
+	if (keycode == W || keycode == UP)
 	{
 		if (game->map->map[(int)game->player->pos_y][(int)(game->player->pos_x
 				+ game->player->dir_x * game->player->move_speed)] == '0')
@@ -63,7 +74,7 @@ int	ft_hook(int keycode, t_game *game)
 			game->player->pos_y += game->player->dir_y * game->player->move_speed;
 		ft_raycasting(game);
 	}
-	if (keycode == S)
+	if (keycode == S || keycode == DOWN)
 	{
 		if (game->map->map[(int)game->player->pos_y][(int)(game->player->pos_x
 				+ game->player->dir_x * game->player->move_speed)] == '0')
@@ -73,38 +84,24 @@ int	ft_hook(int keycode, t_game *game)
 			game->player->pos_y -= game->player->dir_y * game->player->move_speed;
 		ft_raycasting(game);
 	}
-	if (keycode == D)
-	{
-		if (game->map->map[(int)game->player->pos_y][(int)(game->player->pos_x
-				+ game->player->dir_x * game->player->move_speed)] == '0')
-			game->player->pos_x += game->player->dir_x * game->player->move_speed;
-		if (game->map->map[(int)(game->player->pos_y + game->player->dir_y
-				* game->player->move_speed)][(int)game->player->pos_x] == '0')
-			game->player->pos_y -= game->player->dir_y * game->player->move_speed;
-		ft_raycasting(game);
-	}
 	if (keycode == A)
 	{
 		if (game->map->map[(int)game->player->pos_y][(int)(game->player->pos_x
-				+ game->player->dir_x * game->player->move_speed)] == '0')
-			game->player->pos_x -= game->player->move_speed;
-		if (game->map->map[(int)(game->player->pos_y + game->player->dir_y
+				+ game->player->dir_y * game->player->move_speed)] == '0')
+			game->player->pos_x += game->player->dir_y * game->player->move_speed;
+		if (game->map->map[(int)(game->player->pos_y - game->player->dir_x
 				* game->player->move_speed)][(int)game->player->pos_x] == '0')
-			game->player->pos_y += game->player->move_speed;
+			game->player->pos_y -= game->player->dir_x * game->player->move_speed;
 		ft_raycasting(game);
 	}
-	if (keycode == UP)
+	if (keycode == D)
 	{
-		game->player->pos_y -= 1;
-		if (game->player->dir_y == -1)
-			game->player->pos_y += 2;
-		ft_raycasting(game);
-	}
-	if (keycode == DOWN)
-	{
-		game->player->pos_y -= 1;
-		if (game->player->dir_y == 1)
-			game->player->pos_y += 2;
+		if (game->map->map[(int)game->player->pos_y][(int)(game->player->pos_x
+				- game->player->dir_y * game->player->move_speed)] == '0')
+			game->player->pos_x -= game->player->dir_y * game->player->move_speed;
+		if (game->map->map[(int)(game->player->pos_y + game->player->dir_x
+				* game->player->move_speed)][(int)game->player->pos_x] == '0')
+			game->player->pos_y += game->player->dir_x * game->player->move_speed;
 		ft_raycasting(game);
 	}
 	ft_camera_move(keycode, game);
