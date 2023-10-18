@@ -88,7 +88,8 @@ int	main(int ac, char **av)
 	ft_player_init(game, game->player);
 	ft_sides_init(game, -1);
 	game->rays = malloc(sizeof(t_rays));
-	malloc_err(!game->rays, "rays");ft_raycasting(game);
+	malloc_err(!game->rays, "rays");
+	ft_raycasting(game);
 	mlx_hook(game->win, 17, 0, ft_endgame, game);
 	mlx_hook(game->win, 2, 1L << 0, ft_hook, game);
 	mlx_mouse_hook(game->win, ft_mouse_hook, game);
