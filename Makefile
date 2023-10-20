@@ -1,4 +1,5 @@
 NAME = cub3D
+
 SYSTEM = $(shell uname -s)
 #
 PREF_SRC = src

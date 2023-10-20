@@ -13,6 +13,34 @@
 #include "../include/cub3D.h"
 #include <cub3D.h>
 
+static void	ft_sizes(t_game *game, int ac, char **av)
+{
+	int			fd;
+	char		*name;
+	t_map		*map;
+	t_player	*player;
+
+	if (ac == 2)
+	{
+		fd = open(av[1], O_RDONLY);
+		if (fd < 0)
+			ft_exit("Wrong file\nTry to use correct file\n");
+		name = ft_strrchr(av[1], '.');
+		if (!name || ft_strncmp(name, ".cub", 5) != 0)
+			ft_exit("Try to use file with '.cub' ending\n");
+		map = malloc(sizeof(t_map));
+		malloc_err(!map, "map");
+		game->map = map;
+		player = malloc(sizeof(t_player));
+		malloc_err(!player, "player");
+		game->player = player;
+		game->map->address = ft_strdup(av[1]);
+		game->map->fd = fd;
+	}
+	else
+		ft_exit("Wrong number of args\n");
+}
+
 static void	ft_player_init(t_game *game, t_player *player)
 {
 	if (game->map->dir == 'N' || game->map->dir == 'S')
@@ -83,7 +111,8 @@ int	main(int ac, char **av)
 
 	game = malloc(sizeof(t_game));
 	malloc_err(!game, "game");
-	ft_parse(game, ac, av);
+	ft_sizes(game, ac, av);
+	ft_path_parse(game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
 	ft_player_init(game, game->player);

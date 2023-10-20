@@ -1,13 +1,13 @@
-F 220,100,0
-C 225,30,0
+F 50,46,46
+C 76,12,104
 
 
 
 
-NO ./textures/xpm/eagle.xpm
-SO ./textures/xpm/redbrick.xpm
-WE ./textures/xpm/purplestone.xpm
-EA ./textures/xpm/greystone.xpm
+NO ./textures/xpm/brick1.xpm
+SO ./textures/xpm/brick2.xpm
+WE ./textures/xpm/brick3.xpm
+EA ./textures/xpm/brick4.xpm
 
 
 

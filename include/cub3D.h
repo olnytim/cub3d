@@ -145,19 +145,18 @@ void	ft_img_check(t_img *img);
 int		ft_endgame(t_game *game);
 
 /* parse functions */
-char	*ft_skip_spaces(char *line);
-void	ft_empty(char *line);
+void	ft_check_fence(t_game *game, int x, int y);
+void	ft_parse(t_game *game, int ac, char **av);
+void	ft_map_parse(t_game *game, char *line);
+void	ft_convert_colors(t_game *game);
 void	ft_path_parse(t_game *game);
 void	ft_print_info(t_game *game);
-void	ft_parse(t_game *game, int ac, char **av);
-void	ft_sizes(t_game *game, int ac, char **av);
-void	ft_map_parse(t_game *game, char *line);
-void	ft_check_fence(t_game *game, int x, int y);
-void	ft_convert_colors(t_game *game);
+void	ft_empty(char *line);
+char	*ft_skip_spaces(char *line);
 int		ft_check_path_color(char *line);
 
 /* hooks */
-int		ft_mouse_hook(int button, t_game *game);
+int		ft_mouse_hook(int button, int x, int y, t_game *game);
 int		ft_hook(int keycode, t_game *game);
 
 /* raycasting */
