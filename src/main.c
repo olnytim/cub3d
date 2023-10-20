@@ -82,6 +82,7 @@ int	main(int ac, char **av)
 	t_game	*game;
 
 	game = malloc(sizeof(t_game));
+	malloc_err(!game, "game");
 	ft_parse(game, ac, av);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
