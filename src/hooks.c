@@ -114,8 +114,9 @@ int	ft_mouse_hook(int button, int x, int y, t_game *game)
 	double	old_plane_x;
 	t_player	*player;
 
-	(void)game;
 	(void)y;
+	(void)game;
+	(void)button;
 	player = game->player;
 	mlx_mouse_hide();
 	old_dir_x = player->dir_x;
@@ -132,7 +133,7 @@ int	ft_mouse_hook(int button, int x, int y, t_game *game)
 			+ player->plane_y * cos(-player->rot_speed);
 		ft_raycasting(game);
 	}
-	else
+	else if (x > SCREEN_WIDTH / 2)
 	{
 		player->dir_x = player->dir_x * cos(player->rot_speed)
 			- player->dir_y * sin(player->rot_speed);
@@ -144,7 +145,6 @@ int	ft_mouse_hook(int button, int x, int y, t_game *game)
 			+ player->plane_y * cos(player->rot_speed);
 		ft_raycasting(game);
 	}
-	printf("keycode: %d\n", button);
 	mlx_mouse_move(game->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	return (0);
 }

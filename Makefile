@@ -39,7 +39,7 @@ all: add $(NAME)
 #
 $(NAME): $(OBJ) $(LIBFTA)
 	@$(CC) $(CFLAGS) $(FSANITIZE) $(SRC) $(HEADER) $(LIBFTA) $(MINILIBXA) $(MLX_FLAGS) -o $@
-	@echo "Executable file $(NAME) created successfully!"
+	@echo "\033[36mExecutable file $(NAME) was created successfully!"
 #
 $(PREF_OBJ)/%.o: $(PREF_SRC)/%.c Makefile $(HF_PATH)/cub3D.h
 	@mkdir -p $(PREF_OBJ)
@@ -49,8 +49,11 @@ add:
 	@if [[ (! -e $(MINILIBXA)) || (! -e $(LIBFTA)) ]]; then \
 		make -C $(LIBFT_PATH) ; \
 		make -C $(MINILIBX_PATH) ; \
-		echo "Library libmlx.a created successfully!" ; \
+		echo "\033[32mLibrary libmlx.a was created successfully!" ; \
 	fi
+#
+bonus: all
+	@echo "\033[35mBonus file was compiled in the same file \033[36m'$(NAME)' \033[35msuccessfully!"
 #
 clean:
 	@rm -rf $(PREF_OBJ)
