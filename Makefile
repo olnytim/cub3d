@@ -1,4 +1,5 @@
 NAME = cub3D
+SYSTEM = $(shell uname -s)
 #
 PREF_SRC = src
 PREF_OBJ = obj
@@ -6,96 +7,62 @@ PREF_OBJ = obj
 LIBFT_PATH = libft
 LIBFTA = $(LIBFT_PATH)/libft.a
 #
-MAC_MINILIBX_PATH = minilibx-mac
-LINUX_MINILIBX_PATH = minilibx-linux
-#
-MAC_MINILIBXA = $(MAC_MINILIBX_PATH)/libmlx.a
-LINUX_MINILIBXA = $(LINUX_MINILIBX_PATH)/libmlx.a
-#
 HF_PATH = include
 HEADER = -I$(HF_PATH)
-MAC_MLX_HEADER = -I$(MAC_MINILIBX_PATH)
-LINUX_MLX_HEADER = -I$(LINUX_MINILIBX_PATH)
 #
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 FSANITIZE = -fsanitize=address
-MINILIBX = -L./$(LINUX_MINILIBX_PATH) -lmlx -lm -lXext -lX11
-MINILIBX_MAC = -lmlx -framework OpenGL -framework AppKit
 #
 SRC = $(addprefix $(PREF_SRC)/, raycasting.c raycasting2.c \
 	main.c check_utils.c check_map.c check_values.c check_colors.c \
 	hooks.c check.c exit.c)
 OBJ = $(patsubst $(PREF_SRC)/%.c, $(PREF_OBJ)/%.o, $(SRC))
+
+ifeq ($(SYSTEM), Darwin)
+	MINILIBX_PATH = minilibx-mac
+	MLX_HEADER = -I$(MINILIBX_PATH)
+	MINILIBXA = $(MINILIBX_PATH)/libmlx.a
+	MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+	TMP =
+else
+	MINILIBX_PATH = minilibx-linux
+	MLX_HEADER = -I$(MINILIBX_PATH)
+	MINILIBXA = $(MINILIBX_PATH)/libmlx.a
+	MLX_FLAGS = -L./$(MINILIBX_PATH) -lmlx -lm -lXext -lX11
+	TMP = -I$(MINILIBX_PATH)
+endif
 #
-# Mac implementation
-#--------------------------------
-# all: add $(NAME)
-# 	@echo > /dev/null
-# #
-# $(NAME): $(OBJ) $(LIBFTA)
-# 	@$(CC) $(CFLAGS) $(FSANITIZE) $(SRC) $(HEADER) $(LIBFTA) $(MAC_MINILIBXA) $(MINILIBX_MAC) -o $@
-# 	@echo "Executable file $(NAME) created successfully!"
-# #
-# $(PREF_OBJ)/%.o: $(PREF_SRC)/%.c Makefile $(HF_PATH)/cub3D.h
-# 	@mkdir -p $(PREF_OBJ)
-# 	@$(CC) $(CFLAGS) $(FSANITIZE) $(MAC_MLX_HEADER) $(HEADER) -c $< -o $@
-# #---------------------------------
-# #
-# add:
-# 	@make -C $(LIBFT_PATH)
-# 	@if [[ (! -e $(MAC_MINILIBXA)) || (! -e $(LIBFTA)) ]]; then \
-# 		make -C $(MAC_MINILIBX_PATH) ; \
-# 		echo "Library libmlx.a created successfully!" ; \
-# 	fi
-# #
-# clean:
-# 	@rm -rf $(PREF_OBJ)
-# 	@$(MAKE) -C $(LIBFT_PATH) clean
-# 	@$(MAKE) -C $(MAC_MINILIBX_PATH) clean
-# 	@rm -rf *.dSYM
-# #
-# fclean: clean
-# 	@rm -f $(NAME)
-# 	@rm -f $(LIBFTA)
-# 	@rm -f $(MAC_MINILIBXA)
-# #
-# re: fclean all
-# #
-# .PHONY: all add clean fclean re
-# #
-# Linux implementation
-#-------------------------------
 all: add $(NAME)
 	@echo > /dev/null
 #
 $(NAME): $(OBJ) $(LIBFTA)
-	@$(CC) $(CFLAGS) $(SRC) $(LIBFTA) $(FSANITIZE) $(HEADER) $(LINUX_MINILIBXA) $(MINILIBX) -o $@
+	@$(CC) $(CFLAGS) $(FSANITIZE) $(SRC) $(HEADER) $(LIBFTA) $(MINILIBXA) $(MLX_FLAGS) -o $@
 	@echo "Executable file $(NAME) created successfully!"
 #
 $(PREF_OBJ)/%.o: $(PREF_SRC)/%.c Makefile $(HF_PATH)/cub3D.h
 	@mkdir -p $(PREF_OBJ)
-	@$(CC) $(CFLAGS) $(HEADER) $(FSANITIZE) $(LINUX_MLX_HEADER) $(MINILIBX) -c $< -o $@
+	@$(CC) $(CFLAGS) $(FSANITIZE) $(MLX_HEADER) $(HEADER) $(TMP) -c $< -o $@
 #
 add:
-	@make -C $(LIBFT_PATH)
-	@if [[ (! -e $(LINUX_MINILIBXA)) || (! -e $(LIBFTA)) ]]; then \
-		make -C $(LINUX_MINILIBX_PATH) ; \
+	@if [[ (! -e $(MINILIBXA)) || (! -e $(LIBFTA)) ]]; then \
+		make -C $(LIBFT_PATH) ; \
+		make -C $(MINILIBX_PATH) ; \
 		echo "Library libmlx.a created successfully!" ; \
 	fi
 #
 clean:
 	@rm -rf $(PREF_OBJ)
 	@$(MAKE) -C $(LIBFT_PATH) clean
-	@$(MAKE) -C $(LINUX_MINILIBX_PATH) clean
+	@$(MAKE) -C $(MINILIBX_PATH) clean
 	@rm -rf *.dSYM
 #
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(LIBFTA)
-	@rm -f $(LINUX_MINILIBXA)
+	@rm -f $(MINILIBXA)
 #
 re: fclean all
 #
 .PHONY: all add clean fclean re
-#--------------------------------
+#

@@ -18,7 +18,7 @@ void	ft_camera_move(int keycode, t_game *game)
 	double	old_dir_x = game->player->dir_x;
 	double	old_plane_x = game->player->plane_x;
 
-	if (keycode == LEFT)
+	if (keycode == LEFT || keycode == LEFT_L)
 	{
 		game->player->dir_x = game->player->dir_x * cos(-game->player->rot_speed)
 							- game->player->dir_y * sin(-game->player->rot_speed);
@@ -31,7 +31,7 @@ void	ft_camera_move(int keycode, t_game *game)
 							+ game->player->plane_y * cos(-game->player->rot_speed);
 		ft_raycasting(game);
 	}
-	if (keycode == RIGHT)
+	if (keycode == RIGHT || keycode == RIGHT_L)
 	{
 		game->player->dir_x = game->player->dir_x * cos(game->player->rot_speed)
 				- game->player->dir_y * sin(game->player->rot_speed);
@@ -60,11 +60,9 @@ void	ft_camera_move(int keycode, t_game *game)
 int	ft_hook(int keycode, t_game *game)
 {
 	printf("keycode: %d\n", keycode);
-	printf("\ndir x: %f\ndir y: %f\npos x:%f\npos y: %f\nplane x: %f\nplane y: %f\n", game->player->dir_x, game->player->dir_y,
-		game->player->pos_x, game->player->pos_y, game->player->plane_x, game->player->plane_y);
-	if (keycode == ESC)
+	if (keycode == ESC || keycode == ESC_L)
 		ft_endgame(game);
-	if (keycode == W || keycode == UP)
+	if (keycode == W || keycode == UP || keycode == W_L || keycode == UP_L)
 	{
 		if (game->map->map[(int)game->player->pos_y][(int)(game->player->pos_x
 				+ game->player->dir_x * game->player->move_speed)] == '0')
@@ -74,7 +72,7 @@ int	ft_hook(int keycode, t_game *game)
 			game->player->pos_y += game->player->dir_y * game->player->move_speed;
 		ft_raycasting(game);
 	}
-	if (keycode == S || keycode == DOWN)
+	if (keycode == S || keycode == DOWN || keycode == S_L || keycode == DOWN_L)
 	{
 		if (game->map->map[(int)game->player->pos_y][(int)(game->player->pos_x
 				+ game->player->dir_x * game->player->move_speed)] == '0')
@@ -84,7 +82,7 @@ int	ft_hook(int keycode, t_game *game)
 			game->player->pos_y -= game->player->dir_y * game->player->move_speed;
 		ft_raycasting(game);
 	}
-	if (keycode == A)
+	if (keycode == A || keycode == A_L)
 	{
 		if (game->map->map[(int)game->player->pos_y][(int)(game->player->pos_x
 				+ game->player->dir_y * game->player->move_speed)] == '0')
@@ -94,7 +92,7 @@ int	ft_hook(int keycode, t_game *game)
 			game->player->pos_y -= game->player->dir_x * game->player->move_speed;
 		ft_raycasting(game);
 	}
-	if (keycode == D)
+	if (keycode == D || keycode == D_L)
 	{
 		if (game->map->map[(int)game->player->pos_y][(int)(game->player->pos_x
 				- game->player->dir_y * game->player->move_speed)] == '0')

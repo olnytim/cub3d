@@ -20,8 +20,6 @@ static void	ft_fc_colors(t_game *game, t_img *img)
 
 	y = 0;
 	(void)game;
-	printf("screen-Height: %d\n", SCREEN_HEIGHT);
-	printf("screen-width: %d\n", SCREEN_WIDTH);
 	while (y < SCREEN_HEIGHT / 2)
 	{
 		x = 0;
