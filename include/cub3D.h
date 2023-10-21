@@ -156,7 +156,7 @@ char	*ft_skip_spaces(char *line);
 int		ft_check_path_color(char *line);
 
 /* hooks */
-int		ft_mouse_hook(int button, int x, int y, t_game *game);
+int		ft_mouse_hook(int x, int y, t_game *game);
 int		ft_hook(int keycode, t_game *game);
 
 /* raycasting */

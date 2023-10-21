@@ -72,13 +72,13 @@ int	ft_hook(int keycode, t_game *game)
 	return (0);
 }
 
-int	ft_mouse_hook(int button, int x, int y, t_game *game)
+int	ft_mouse_hook(int x, int y, t_game *game)
 {
 	(void)y;
-	(void)x;
-	(void)button;
-	(void)game;
+	// (void)x;
+	// (void)game;
 	mlx_mouse_hide();
+	mlx_mouse_get_pos(game->win, &x, &y);
 	if (x < SCREEN_WIDTH / 2)
 		ft_turn_left_right(game, game->player, -1);
 	else if (x > SCREEN_WIDTH / 2)

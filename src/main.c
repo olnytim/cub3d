@@ -122,8 +122,8 @@ int	main(int ac, char **av)
 	ft_raycasting(game);
 	mlx_hook(game->win, 17, 0, ft_endgame, game);
 	mlx_hook(game->win, 2, 1L << 0, ft_hook, game);
-	// mlx_hook(game->win, 6, 1L << 6, ft_mouse_hook, game); // doesn't work
-	mlx_mouse_hook(game->win, ft_mouse_hook, game);
+	mlx_hook(game->win, 6, 1L << 6, ft_mouse_hook, game); // doesn't work
+	// mlx_mouse_hook(game->win, ft_mouse_hook, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

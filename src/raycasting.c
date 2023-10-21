@@ -94,7 +94,7 @@ void	ft_raycasting(t_game *game)
 	x = -1;
 	game->img = malloc(sizeof(t_img));
 	malloc_err(!game->img, "img");
-	game->player->move_speed = 1.0;
+	game->player->move_speed = 0.1;
 	game->player->rot_speed = 0.1;
 	game->img->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	game->img->addr = (int *)mlx_get_data_addr(game->img->img,
@@ -109,6 +109,7 @@ void	ft_raycasting(t_game *game)
 		ft_walls_side(game, game->rays);
 		ft_tex_rendering(game, game->rays, game->img, x);
 	}
+	mlx_clear_window(game->mlx, game->win);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	mlx_destroy_image(game->mlx, game->img->img);
 	free(game->img);

@@ -4,10 +4,10 @@ C 76,12,104
 
 
 
-NO ./textures/xpm/brick1.xpm
-SO ./textures/xpm/brick2.xpm
-WE ./textures/xpm/brick3.xpm
-EA ./textures/xpm/brick4.xpm
+NO ./textures/xpm/tech1.xpm
+SO ./textures/xpm/tech2.xpm
+WE ./textures/xpm/tech3.xpm
+EA ./textures/xpm/tech4.xpm
 
 
 
