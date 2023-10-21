@@ -42,14 +42,26 @@ static void	ft_move_forward_backward(t_game *game, t_player *player, int i)
 	ft_raycasting(game);
 }
 
-static void	ft_move_left_right(t_game *game, t_player *player, int i, int j)
+static void	ft_move_left_right(t_game *game, t_player *player, int i)
 {
-	if (game->map->map[(int)player->pos_y][(int)(player->pos_x
-		+ i * player->dir_y * player->move_speed)] == '0')
-		player->pos_x += i * player->dir_y * player->move_speed;
-	if (game->map->map[(int)(player->pos_y - j * player->dir_x
-			* player->move_speed)][(int)player->pos_x] == '0')
-		player->pos_y -= j * player->dir_x * player->move_speed;
+	if (i == 1)
+	{
+		if (game->map->map[(int)player->pos_y][(int)(player->pos_x
+			+ player->dir_y * player->move_speed)] == '0')
+			player->pos_x += player->dir_y * player->move_speed;
+		if (game->map->map[(int)(player->pos_y - player->dir_x
+				* player->move_speed)][(int)player->pos_x] == '0')
+			player->pos_y -= player->dir_x * player->move_speed;
+	}
+	else
+	{
+		if (game->map->map[(int)player->pos_y][(int)(player->pos_x
+			- player->dir_y * player->move_speed)] == '0')
+			player->pos_x -= player->dir_y * player->move_speed;
+		if (game->map->map[(int)(player->pos_y + player->dir_x
+				* player->move_speed)][(int)player->pos_x] == '0')
+			player->pos_y += player->dir_x * player->move_speed;
+	}
 	ft_raycasting(game);
 }
 
@@ -62,9 +74,9 @@ int	ft_hook(int keycode, t_game *game)
 	if (keycode == S || keycode == DOWN || keycode == S_L || keycode == DOWN_L)
 		ft_move_forward_backward(game, game->player, -1);
 	if (keycode == A || keycode == A_L)
-		ft_move_left_right(game, game->player, 1, -1);
+		ft_move_left_right(game, game->player, 1);
 	if (keycode == D || keycode == D_L)
-		ft_move_left_right(game, game->player, -1, 1);
+		ft_move_left_right(game, game->player, 0);
 	if (keycode == LEFT || keycode == LEFT_L)
 		ft_turn_left_right(game, game->player, -1);
 	if (keycode == RIGHT || keycode == RIGHT_L)
@@ -74,9 +86,6 @@ int	ft_hook(int keycode, t_game *game)
 
 int	ft_mouse_hook(int x, int y, t_game *game)
 {
-	(void)y;
-	// (void)x;
-	// (void)game;
 	mlx_mouse_hide();
 	mlx_mouse_get_pos(game->win, &x, &y);
 	if (x < SCREEN_WIDTH / 2)

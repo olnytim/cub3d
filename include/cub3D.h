@@ -116,16 +116,17 @@ typedef struct s_game
 	t_img		*wall_t;
 }	t_game;
 
- enum {
- 	W = 13,
- 	S = 1,
- 	D = 2,
- 	A = 0,
- 	ESC = 53,
- 	LEFT = 123,
- 	RIGHT = 124,
- 	UP = 126,
- 	DOWN = 125,
+enum
+{
+	W = 13,
+	S = 1,
+	D = 2,
+	A = 0,
+	ESC = 53,
+	LEFT = 123,
+	RIGHT = 124,
+	UP = 126,
+	DOWN = 125,
 	W_L = 119,
 	S_L = 115,
 	D_L = 100,
@@ -135,9 +136,8 @@ typedef struct s_game
 	RIGHT_L = 65363,
 	UP_L = 65362,
 	DOWN_L = 65364
- } ;
+} ;
 
-// list of functions
 /* exit functions */
 void	ft_exit(char *str);
 void	malloc_err(int condition, char *str);
