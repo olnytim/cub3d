@@ -100,8 +100,8 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
 	int	*dst;
 
-	dst = game->img->addr + (y * game->img->line_length
-			+ x * (game->img->b_p_p / 8));
+	dst = game->img->addr + (y * (game->img->line_length / 4)
+			+ x);
 	*(unsigned int *)dst = color;
 }
 

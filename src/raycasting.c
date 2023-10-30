@@ -111,6 +111,8 @@ void	ft_raycasting(t_game *game)
 	}
 	mlx_clear_window(game->mlx, game->win);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
+	minimap(game);
+	// my_mlx_pixel_put(game, 5, 5, 0);
 	mlx_destroy_image(game->mlx, game->img->img);
 	free(game->img);
 }

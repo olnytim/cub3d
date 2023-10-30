@@ -16,7 +16,8 @@
 // libs
 // # include <mlx.h>
 # include "../libft/libft.h"
-# include "../minilibx-mac/mlx.h"
+// # include "../minilibx-mac/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -166,5 +167,6 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	ft_walls_side(t_game *game, t_rays *rays);
 void	ft_dda(t_game *game, t_rays *rays);
 void	ft_raycasting(t_game *game);
+void	minimap(t_game *game);
 
 #endif

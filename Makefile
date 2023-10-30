@@ -17,7 +17,7 @@ FSANITIZE = -fsanitize=address
 #
 SRC = $(addprefix $(PREF_SRC)/, raycasting.c raycasting2.c \
 	main.c check_utils.c check_map.c check_values.c check_colors.c \
-	hooks.c check.c exit.c)
+	hooks.c check.c exit.c minimap.c)
 OBJ = $(patsubst $(PREF_SRC)/%.c, $(PREF_OBJ)/%.o, $(SRC))
 #
 ifeq ($(SYSTEM), Darwin)
@@ -46,7 +46,7 @@ $(PREF_OBJ)/%.o: $(PREF_SRC)/%.c Makefile $(HF_PATH)/cub3D.h
 	@$(CC) $(CFLAGS) $(FSANITIZE) $(MLX_HEADER) $(HEADER) $(TMP) -c $< -o $@
 #
 add:
-	@if [[ (! -e $(MINILIBXA)) || (! -e $(LIBFTA)) ]]; then \
+	@if [[ ! -e $(MINILIBXA) || ! -e $(LIBFTA) ]]; then \
 		make -C $(LIBFT_PATH) ; \
 		make -C $(MINILIBX_PATH) ; \
 		echo "\033[32mLibrary libmlx.a was created successfully!" ; \

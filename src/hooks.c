@@ -86,12 +86,12 @@ int	ft_hook(int keycode, t_game *game)
 
 int	ft_mouse_hook(int x, int y, t_game *game)
 {
-	mlx_mouse_hide();
-	mlx_mouse_get_pos(game->win, &x, &y);
+	mlx_mouse_hide(game->mlx, game->win);
+	mlx_mouse_get_pos(game->mlx, game->win, &x, &y);
 	if (x < SCREEN_WIDTH / 2)
 		ft_turn_left_right(game, game->player, -1);
 	else if (x > SCREEN_WIDTH / 2)
 		ft_turn_left_right(game, game->player, 1);
-	mlx_mouse_move(game->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	mlx_mouse_move(game->mlx, game->win, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	return (0);
 }
