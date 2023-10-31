@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
 #include <cub3D.h>
 
 static void	ft_fc_colors(t_game *game, t_img *img)
@@ -94,7 +93,7 @@ void	ft_raycasting(t_game *game)
 	x = -1;
 	game->img = malloc(sizeof(t_img));
 	malloc_err(!game->img, "img");
-	game->player->move_speed = 0.11;
+	game->player->move_speed = 0.12;
 	game->player->rot_speed = 0.1;
 	game->img->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	game->img->addr = (int *)mlx_get_data_addr(game->img->img,
@@ -111,8 +110,7 @@ void	ft_raycasting(t_game *game)
 	}
 	mlx_clear_window(game->mlx, game->win);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
-	minimap(game);
-	// my_mlx_pixel_put(game, 5, 5, 0);
+	minimap(game, 4, 4);
 	mlx_destroy_image(game->mlx, game->img->img);
 	free(game->img);
 }

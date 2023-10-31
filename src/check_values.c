@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
 #include <cub3D.h>
 
 static void	ft_init_help(t_game *game, char *map, char rem)

@@ -14,10 +14,8 @@
 # define CUB3D_H
 
 // libs
-// # include <mlx.h>
 # include "../libft/libft.h"
-// # include "../minilibx-mac/mlx.h"
-# include "../minilibx-linux/mlx.h"
+# include "../minilibx-mac/mlx.h"
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -163,10 +161,9 @@ int		ft_hook(int keycode, t_game *game);
 /* raycasting */
 void	ft_tex_rendering(t_game *game, t_rays *rays, t_img *img, int x);
 void	ft_render_walls(t_game *game, t_rays *rays, t_img *img);
-void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	ft_walls_side(t_game *game, t_rays *rays);
 void	ft_dda(t_game *game, t_rays *rays);
 void	ft_raycasting(t_game *game);
-void	minimap(t_game *game);
+void	minimap(t_game *game, int i, int j);
 
 #endif

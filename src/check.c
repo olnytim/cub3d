@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// file will contain each parse and init function
-
-#include "../include/cub3D.h"
 #include <cub3D.h>
 
 void	ft_print_info(t_game *game)

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
 #include <cub3D.h>
 
 static void	ft_sizes(t_game *game, int ac, char **av)
@@ -94,15 +93,6 @@ static void	ft_sides_init(t_game *game, int i)
 				&img->line_length, &img->endian);
 		*img_pointers[i] = img;
 	}
-}
-
-void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
-{
-	int	*dst;
-
-	dst = game->img->addr + (y * (game->img->line_length / 4)
-			+ x);
-	*(unsigned int *)dst = color;
 }
 
 int	main(int ac, char **av)
