@@ -49,3 +49,30 @@ void	minimap(t_game *game, int i, int j)
 		}
 	}
 }
+
+int	animation(t_game *game)
+{
+	static int	stat;
+	void		*img;
+	int			img_w;
+	int			img_h;
+
+	img = mlx_xpm_file_to_image(game->mlx, PISTOL, &img_w, &img_h);
+	if (!img)
+		ft_exit(IMG_ERR);
+	if (stat < 180)
+	{
+		if (stat < 90)
+			mlx_put_image_to_window(game->mlx, game->win, img,
+				SCREEN_WIDTH / 2 - img_w, 3 * SCREEN_HEIGHT / 4 - img_h);
+		else
+			mlx_put_image_to_window(game->mlx, game->win, img,
+				SCREEN_WIDTH / 2 - img_w, 4 * SCREEN_HEIGHT / 5 - img_h);
+		stat++;
+	}
+	else
+		stat = 0;
+	mlx_destroy_image(game->mlx, img);
+	ft_raycasting(game);
+	return (0);
+}

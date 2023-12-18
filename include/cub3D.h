@@ -15,7 +15,7 @@
 
 // libs
 # include "../libft/libft.h"
-# include "../minilibx-mac/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -26,6 +26,12 @@
 # define SCREEN_HEIGHT 480
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
+
+// paths to images
+# define PISTOL "./textures/xpm/pistol.xpm"
+
+// errors
+# define IMG_ERR "Animation image not found\n"
 
 // define structs
 typedef struct s_map
@@ -165,5 +171,6 @@ void	ft_walls_side(t_game *game, t_rays *rays);
 void	ft_dda(t_game *game, t_rays *rays);
 void	ft_raycasting(t_game *game);
 void	minimap(t_game *game, int i, int j);
+int		animation(t_game *game);
 
 #endif
