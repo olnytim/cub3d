@@ -78,7 +78,7 @@ int	animation(t_game *game)
 
 	img_left = mlx_xpm_file_to_image(game->mlx, HAND_L, &img_w, &img_h);
 	img_right = mlx_xpm_file_to_image(game->mlx, HAND_R, &img_w, &img_h);
-	if (!img_left && !img_right)
+	if (!img_left || !img_right)
 		ft_exit(IMG_ERR);
 	mlx_put_image_to_window(game->mlx, game->win, img_left,
 		SCREEN_WIDTH * 2 / 5 - img_w, SCREEN_HEIGHT * 15 / 16 - img_h - ch());
