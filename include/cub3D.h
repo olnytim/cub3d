@@ -15,7 +15,8 @@
 
 // libs
 # include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
+//# include "../minilibx-linux/mlx.h"
+#include "../minilibx-mac/mlx.h"
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
@@ -28,7 +29,8 @@
 # define TEX_HEIGHT 64
 
 // paths to images
-# define PISTOL "./textures/xpm/pistol.xpm"
+# define HAND_R "./textures/xpm/hand_right.xpm"
+# define HAND_L "./textures/xpm/hand_left.xpm"
 
 // errors
 # define IMG_ERR "Animation image not found\n"

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <cub3D.h>
+#include "../include/cub3D.h"
 
 int	split_size(char **split)
 {
@@ -53,26 +54,34 @@ void	minimap(t_game *game, int i, int j)
 int	animation(t_game *game)
 {
 	static int	stat;
-	void		*img;
+	void		*img_left;
+	void		*img_right;
 	int			img_w;
 	int			img_h;
 
-	img = mlx_xpm_file_to_image(game->mlx, PISTOL, &img_w, &img_h);
-	if (!img)
+	img_left = mlx_xpm_file_to_image(game->mlx, HAND_L, &img_w, &img_h);
+	img_right = mlx_xpm_file_to_image(game->mlx, HAND_R, &img_w, &img_h);
+	if (!img_left && !img_right)
 		ft_exit(IMG_ERR);
-	if (stat < 180)
-	{
-		if (stat < 90)
-			mlx_put_image_to_window(game->mlx, game->win, img,
-				SCREEN_WIDTH / 2 - img_w, 3 * SCREEN_HEIGHT / 4 - img_h);
-		else
-			mlx_put_image_to_window(game->mlx, game->win, img,
-				SCREEN_WIDTH / 2 - img_w, 4 * SCREEN_HEIGHT / 5 - img_h);
-		stat++;
-	}
-	else
-		stat = 0;
-	mlx_destroy_image(game->mlx, img);
-	ft_raycasting(game);
+//	if (stat < 30)
+//	{
+//		if (stat < 15)
+//			mlx_put_image_to_window(game->mlx, game->win, img,
+//				SCREEN_WIDTH / 3 - img_w, 3 * SCREEN_HEIGHT / 4 - img_h);
+//		else
+//			mlx_put_image_to_window(game->mlx, game->win, img,
+//				SCREEN_WIDTH / 3 - img_w, 4 * SCREEN_HEIGHT / 5 - img_h);
+//		stat++;
+//	}
+//	else
+//		stat = 0;
+//	ft_raycasting(game);
+	mlx_put_image_to_window(game->mlx, game->win, img_left,
+		SCREEN_WIDTH / 3 - img_w, SCREEN_HEIGHT * 3 / 4 - img_h + stat);
+	mlx_put_image_to_window(game->mlx, game->win, img_right,
+		SCREEN_WIDTH * 2 / 3 - img_w, SCREEN_HEIGHT * 3 / 4 - img_h + stat);
+
+	mlx_destroy_image(game->mlx, img_left);
+	mlx_destroy_image(game->mlx, img_right);
 	return (0);
 }
