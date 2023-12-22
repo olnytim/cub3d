@@ -51,9 +51,26 @@ void	minimap(t_game *game, int i, int j)
 	}
 }
 
+static int	ch( void )
+{
+	static int stat;
+	static int flag;
+
+	if (stat < 60 && flag == 0)
+		++stat;
+	else
+	{
+		if (stat == 60)
+			flag = 1;
+		else if (stat == 0)
+			flag = 0;
+		--stat;
+	}
+	return stat;
+}
+
 int	animation(t_game *game)
 {
-	static int	stat;
 	void		*img_left;
 	void		*img_right;
 	int			img_w;
@@ -63,24 +80,10 @@ int	animation(t_game *game)
 	img_right = mlx_xpm_file_to_image(game->mlx, HAND_R, &img_w, &img_h);
 	if (!img_left && !img_right)
 		ft_exit(IMG_ERR);
-//	if (stat < 30)
-//	{
-//		if (stat < 15)
-//			mlx_put_image_to_window(game->mlx, game->win, img,
-//				SCREEN_WIDTH / 3 - img_w, 3 * SCREEN_HEIGHT / 4 - img_h);
-//		else
-//			mlx_put_image_to_window(game->mlx, game->win, img,
-//				SCREEN_WIDTH / 3 - img_w, 4 * SCREEN_HEIGHT / 5 - img_h);
-//		stat++;
-//	}
-//	else
-//		stat = 0;
-//	ft_raycasting(game);
 	mlx_put_image_to_window(game->mlx, game->win, img_left,
-		SCREEN_WIDTH / 3 - img_w, SCREEN_HEIGHT * 3 / 4 - img_h + stat);
+		SCREEN_WIDTH * 2 / 5 - img_w, SCREEN_HEIGHT * 15 / 16 - img_h - ch());
 	mlx_put_image_to_window(game->mlx, game->win, img_right,
-		SCREEN_WIDTH * 2 / 3 - img_w, SCREEN_HEIGHT * 3 / 4 - img_h + stat);
-
+		SCREEN_WIDTH * 2 / 3 - img_w, SCREEN_HEIGHT * 5 / 6 - img_h + ch());
 	mlx_destroy_image(game->mlx, img_left);
 	mlx_destroy_image(game->mlx, img_right);
 	return (0);
