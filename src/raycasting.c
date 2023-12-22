@@ -18,6 +18,8 @@ static void	ft_fc_colors(t_game *game, t_img *img)
 	int	y;
 
 	y = 0;
+	game->player->move_speed = 0.12;
+	game->player->rot_speed = 0.1;
 	(void)game;
 	while (y < SCREEN_HEIGHT / 2)
 	{
@@ -93,8 +95,6 @@ void	ft_raycasting(t_game *game)
 	x = -1;
 	game->img = malloc(sizeof(t_img));
 	malloc_err(!game->img, "img");
-	game->player->move_speed = 0.12;
-	game->player->rot_speed = 0.1;
 	game->img->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	game->img->addr = (int *)mlx_get_data_addr(game->img->img,
 			&game->img->b_p_p, &game->img->line_length, &game->img->endian);

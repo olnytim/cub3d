@@ -53,8 +53,8 @@ void	minimap(t_game *game, int i, int j)
 
 static int	ch( void )
 {
-	static int stat;
-	static int flag;
+	static int	stat;
+	static int	flag;
 
 	if (stat < 60 && flag == 0)
 		++stat;
@@ -66,7 +66,7 @@ static int	ch( void )
 			flag = 0;
 		--stat;
 	}
-	return stat;
+	return (stat);
 }
 
 int	animation(t_game *game)

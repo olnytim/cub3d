@@ -15,8 +15,7 @@
 
 // libs
 # include "../libft/libft.h"
-//# include "../minilibx-linux/mlx.h"
-#include "../minilibx-mac/mlx.h"
+# include "../minilibx-mac/mlx.h"
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
