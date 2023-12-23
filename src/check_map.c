@@ -67,7 +67,7 @@ void	count_lines(t_game *game, char **line)
 		game->map->map_size++;
 		free(*line);
 		*line = get_next_line(game->map->fd);
-		while (**line == '\n')
+		while (*line && **line == '\n')
 		{
 			free(*line);
 			*line = get_next_line(game->map->fd);
@@ -120,7 +120,7 @@ void	ft_map_parse(t_game *game, char *line)
 		if (*line == '\n' && ft_check_end(game, line))
 			break ;
 	}
-	if (!game->map->dir)
+	if (game->map->dir == 0)
 		ft_exit("There is no place to start\n");
 	game->map->map[game->map->map_size] = NULL;
 	ft_check_fence(game, 0, 0);

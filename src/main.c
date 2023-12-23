@@ -30,6 +30,7 @@ static void	ft_sizes(t_game *game, int ac, char **av)
 		map = malloc(sizeof(t_map));
 		malloc_err(!map, "map");
 		game->map = map;
+		game->map->dir = 0;
 		player = malloc(sizeof(t_player));
 		malloc_err(!player, "player");
 		game->player = player;
@@ -59,11 +60,11 @@ static void	ft_player_init(t_game *game, t_player *player)
 		player->dir_y = 0;
 		player->plane_x = 0;
 		player->dir_x = -1;
-		player->plane_y = 0.66;
+		player->plane_y = -0.66;
 		if (game->map->dir == 'E')
 		{
 			player->dir_x = 1;
-			player->plane_y = -0.66;
+			player->plane_y = 0.66;
 		}
 	}
 }
