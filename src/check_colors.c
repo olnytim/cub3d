@@ -78,9 +78,9 @@ void	ft_convert_colors(t_game *game)
 	ft_trim_spaces(f_color);
 	ft_trim_spaces(c_color);
 	ceiling_color = malloc(sizeof(int) * 4);
-	malloc_err(!*ceiling_color, "ceiling color");
+	malloc_err(!ceiling_color, "ceiling color");
 	floor_color = malloc(sizeof(int) * 4);
-	malloc_err(!*floor_color, "floor color");
+	malloc_err(!floor_color, "floor color");
 	ceiling_color[3] = -1;
 	floor_color[3] = -1;
 	ft_fill_arr(f_color, floor_color);
