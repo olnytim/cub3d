@@ -81,9 +81,9 @@ int	animation(t_game *game)
 	if (!img_left || !img_right)
 		ft_exit(IMG_ERR);
 	mlx_put_image_to_window(game->mlx, game->win, img_left,
-		SCREEN_WIDTH - 360 - img_w, SCREEN_HEIGHT + 80 - img_h - ch());
+		SCREEN_WIDTH - 300 - img_w, SCREEN_HEIGHT + 120 - img_h - ch());
 	mlx_put_image_to_window(game->mlx, game->win, img_right,
-		SCREEN_WIDTH - 160 - img_w, SCREEN_HEIGHT + 20 - img_h + ch());
+		SCREEN_WIDTH - 80 - img_w, SCREEN_HEIGHT + 60 - img_h + ch());
 	mlx_destroy_image(game->mlx, img_left);
 	mlx_destroy_image(game->mlx, img_right);
 	return (0);
